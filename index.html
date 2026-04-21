@@ -11,7 +11,7 @@
 
   body {
     font-family: 'Poppins', system-ui, sans-serif;
-    background: #F1F5F9;
+    background: #67EADD;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1294,61 +1294,61 @@
         </table>
       </div>
 
-      <!-- New Application Requests Q4 vs Q1 — Workato branded -->
-      <div style="background:#111010;border-radius:14px;margin-bottom:18px;overflow:hidden;border:1px solid rgba(103,234,221,0.2);">
-        <div style="padding:14px 20px 12px;border-bottom:1px solid rgba(103,234,221,0.15);display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-size:0.78rem;font-weight:700;color:#67EADD;text-transform:uppercase;letter-spacing:0.08em;">New Application Requests — Q4 2025 vs Q1 2026</span>
-          <span class="info-icon" style="background:#3EA2A8;color:#fff;">i<span class="tooltip">Requests for access to a new application or tool. Click each quarter card to see the full list.</span></span>
+      <!-- New Application Requests Q4 vs Q1 -->
+      <div style="background:#fff;border-radius:14px;margin-bottom:18px;overflow:hidden;border:1px solid #E2E8F0;">
+        <div style="padding:14px 20px 12px;border-bottom:1px solid #E2E8F0;background:#F8FAFC;border-left:3px solid #3B82F6;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:0.72rem;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.08em;">New Application Requests — Q4 2025 vs Q1 2026</span>
+          <span class="info-icon">i<span class="tooltip">Requests for access to a new application or tool. Click each quarter card to see the full list.</span></span>
         </div>
 
         <!-- Two quarter cards + arrow -->
         <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:16px 20px 8px;gap:12px;">
 
           <!-- Q4 card -->
-          <div id="nar-q4-card" onclick="toggleNAR('q4')" style="cursor:pointer;background:#1A1717;border:2px solid #3EA2A8;border-radius:12px;padding:18px 16px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
-            <div style="font-size:0.6rem;font-weight:700;color:#67EADD;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Q4 2025 · Dec – Feb</div>
-            <div style="font-size:2.6rem;font-weight:900;color:#C0C0C0;line-height:1;">4</div>
-            <div style="font-size:0.62rem;color:#686868;margin-top:3px;">requests</div>
-            <div style="margin-top:8px;font-size:0.62rem;color:#C0C0C0;">3 done &nbsp;·&nbsp; 1 rejected</div>
-            <div style="margin-top:10px;font-size:0.63rem;font-weight:700;color:#67EADD;" id="nar-q4-toggle">▼ Show apps</div>
+          <div id="nar-q4-card" onclick="toggleNAR('q4')" style="cursor:pointer;background:#F8FAFC;border:2px solid #CBD5E1;border-radius:12px;padding:18px 16px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
+            <div style="font-size:0.6rem;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Q4 2025 · Dec – Feb</div>
+            <div style="font-size:2.6rem;font-weight:900;color:#64748B;line-height:1;">4</div>
+            <div style="font-size:0.62rem;color:#94A3B8;margin-top:3px;">requests</div>
+            <div style="margin-top:8px;font-size:0.62rem;color:#64748B;">3 done &nbsp;·&nbsp; 1 rejected</div>
+            <div style="margin-top:10px;font-size:0.63rem;font-weight:700;color:#1D4ED8;" id="nar-q4-toggle">▼ Show apps</div>
           </div>
 
           <!-- Growth indicator -->
           <div style="text-align:center;padding:0 10px;">
-            <div style="font-size:1.4rem;color:#67EADD;">→</div>
-            <div style="background:linear-gradient(135deg,#67EADD,#22DBC8);color:#111010;font-size:0.72rem;font-weight:800;padding:4px 12px;border-radius:20px;white-space:nowrap;margin-top:5px;">+325%</div>
-            <div style="font-size:0.58rem;color:#686868;margin-top:4px;">Q4 → Q1</div>
+            <div style="font-size:1.4rem;color:#3B82F6;">→</div>
+            <div style="background:linear-gradient(135deg,#1D4ED8,#3B82F6);color:#fff;font-size:0.72rem;font-weight:800;padding:4px 12px;border-radius:20px;white-space:nowrap;margin-top:5px;">+325%</div>
+            <div style="font-size:0.58rem;color:#94A3B8;margin-top:4px;">Q4 → Q1</div>
           </div>
 
           <!-- Q1 card -->
-          <div id="nar-q1-card" onclick="toggleNAR('q1')" style="cursor:pointer;background:#1A1717;border:2px solid #67EADD;border-radius:12px;padding:18px 16px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
-            <div style="font-size:0.6rem;font-weight:700;color:#67EADD;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Q1 2026 · Mar – Apr (partial)</div>
-            <div style="font-size:2.6rem;font-weight:900;color:#67EADD;line-height:1;">17</div>
-            <div style="font-size:0.62rem;color:#22DBC8;margin-top:3px;">requests</div>
-            <div style="margin-top:8px;font-size:0.62rem;color:#C0C0C0;">4 done &nbsp;·&nbsp; 3 rejected &nbsp;·&nbsp; 10 triaging</div>
-            <div style="margin-top:10px;font-size:0.63rem;font-weight:700;color:#67EADD;" id="nar-q1-toggle">▼ Show apps</div>
+          <div id="nar-q1-card" onclick="toggleNAR('q1')" style="cursor:pointer;background:#EFF6FF;border:2px solid #3B82F6;border-radius:12px;padding:18px 16px;text-align:center;transition:border-color 0.2s,box-shadow 0.2s;">
+            <div style="font-size:0.6rem;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Q1 2026 · Mar – Apr (partial)</div>
+            <div style="font-size:2.6rem;font-weight:900;color:#1D4ED8;line-height:1;">17</div>
+            <div style="font-size:0.62rem;color:#3B82F6;margin-top:3px;">requests</div>
+            <div style="margin-top:8px;font-size:0.62rem;color:#64748B;">4 done &nbsp;·&nbsp; 3 rejected &nbsp;·&nbsp; 10 triaging</div>
+            <div style="margin-top:10px;font-size:0.63rem;font-weight:700;color:#1D4ED8;" id="nar-q1-toggle">▼ Show apps</div>
           </div>
 
         </div>
 
         <!-- Q4 expandable list -->
         <div id="nar-q4-list" style="display:none;padding:4px 20px 16px;">
-          <div style="font-size:0.6rem;font-weight:700;color:#67EADD;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;padding-top:10px;border-top:1px solid rgba(103,234,221,0.15);">Q4 2025 · 4 Applications</div>
+          <div style="font-size:0.6rem;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;padding-top:10px;border-top:1px solid #E2E8F0;">Q4 2025 · 4 Applications</div>
           <div style="display:flex;flex-wrap:wrap;gap:8px;">
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2045" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">PagerDuty</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2045" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">PagerDuty</span>
               <span style="background:#10B981;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Done</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2046" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">PageUp</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2046" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">PageUp</span>
               <span style="background:#EF4444;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Rejected</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2186" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Docebo</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2186" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Docebo</span>
               <span style="background:#10B981;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Done</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2199" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Coda</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2199" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Coda</span>
               <span style="background:#10B981;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Done</span>
             </a>
           </div>
@@ -1356,84 +1356,84 @@
 
         <!-- Q1 expandable list -->
         <div id="nar-q1-list" style="display:none;padding:4px 20px 16px;">
-          <div style="font-size:0.6rem;font-weight:700;color:#67EADD;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;padding-top:10px;border-top:1px solid rgba(103,234,221,0.15);">Q1 2026 · 17 Applications</div>
+          <div style="font-size:0.6rem;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;padding-top:10px;border-top:1px solid #E2E8F0;">Q1 2026 · 17 Applications</div>
           <div style="display:flex;flex-wrap:wrap;gap:8px;">
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2215" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">OneLogin</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2215" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">OneLogin</span>
               <span style="background:#10B981;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Done</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2216" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">ADP</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2216" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">ADP</span>
               <span style="background:#F59E0B;color:#111010;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2218" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Splunk Cloud</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2218" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Splunk Cloud</span>
               <span style="background:#EF4444;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Rejected</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2225" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Business Central</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2225" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Business Central</span>
               <span style="background:#10B981;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Done</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2230" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Zuora RevPro</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2230" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Zuora RevPro</span>
               <span style="background:#F59E0B;color:#111010;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2233" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">ADP Workforce Now</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2233" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">ADP Workforce Now</span>
               <span style="background:#F59E0B;color:#111010;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2238" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Anaplan</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2238" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Anaplan</span>
               <span style="background:#EF4444;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Rejected</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2276" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">DUSTT</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2276" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">DUSTT</span>
               <span style="background:#10B981;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Done</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2302" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Kandji</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2302" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Kandji</span>
               <span style="background:#F59E0B;color:#111010;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2309" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Clay Enterprise</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2309" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Clay Enterprise</span>
               <span style="background:#F59E0B;color:#111010;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2315" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Clari</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2315" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Clari</span>
               <span style="background:#F59E0B;color:#111010;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2319" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Google Gemini</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2319" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Google Gemini</span>
               <span style="background:#F59E0B;color:#111010;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2335" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Confluence On-prem</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2335" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Confluence On-prem</span>
               <span style="background:#F59E0B;color:#111010;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2336" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">JIRA On-prem</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2336" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">JIRA On-prem</span>
               <span style="background:#F59E0B;color:#111010;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2345" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Staircase AI</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2345" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Staircase AI</span>
               <span style="background:#F59E0B;color:#111010;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2365" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Pardot</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2365" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Pardot</span>
               <span style="background:#F59E0B;color:#111010;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span>
             </a>
-            <a href="https://workato.atlassian.net/browse/PETFOSUP-2379" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#282525;border:1px solid rgba(103,234,221,0.2);border-radius:8px;padding:7px 12px;">
-              <span style="font-size:0.75rem;font-weight:600;color:#fff;">Cornerstone HR</span>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2379" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;">
+              <span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Cornerstone HR</span>
               <span style="background:#F59E0B;color:#111010;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span>
             </a>
           </div>
         </div>
 
         <!-- Legend -->
-        <div style="display:flex;gap:14px;padding:6px 20px 14px;flex-wrap:wrap;border-top:1px solid rgba(103,234,221,0.1);margin-top:4px;">
-          <span style="font-size:0.6rem;color:#686868;display:flex;align-items:center;gap:5px;"><span style="background:#10B981;color:#fff;font-size:0.57rem;font-weight:700;padding:1px 7px;border-radius:6px;">Done</span> Fully provisioned</span>
-          <span style="font-size:0.6rem;color:#686868;display:flex;align-items:center;gap:5px;"><span style="background:#F59E0B;color:#111010;font-size:0.57rem;font-weight:700;padding:1px 7px;border-radius:6px;">Triaging</span> In progress / under review</span>
-          <span style="font-size:0.6rem;color:#686868;display:flex;align-items:center;gap:5px;"><span style="background:#EF4444;color:#fff;font-size:0.57rem;font-weight:700;padding:1px 7px;border-radius:6px;">Rejected</span> Not approved</span>
+        <div style="display:flex;gap:14px;padding:6px 20px 14px;flex-wrap:wrap;border-top:1px solid #E2E8F0;margin-top:4px;">
+          <span style="font-size:0.6rem;color:#64748B;display:flex;align-items:center;gap:5px;"><span style="background:#10B981;color:#fff;font-size:0.57rem;font-weight:700;padding:1px 7px;border-radius:6px;">Done</span> Fully provisioned</span>
+          <span style="font-size:0.6rem;color:#64748B;display:flex;align-items:center;gap:5px;"><span style="background:#F59E0B;color:#fff;font-size:0.57rem;font-weight:700;padding:1px 7px;border-radius:6px;">Triaging</span> In progress / under review</span>
+          <span style="font-size:0.6rem;color:#64748B;display:flex;align-items:center;gap:5px;"><span style="background:#EF4444;color:#fff;font-size:0.57rem;font-weight:700;padding:1px 7px;border-radius:6px;">Rejected</span> Not approved</span>
         </div>
 
       </div>
@@ -1446,7 +1446,7 @@
         const isOpen = list.style.display !== 'none';
         list.style.display = isOpen ? 'none' : 'block';
         toggle.textContent = isOpen ? '▼ Show apps' : '▲ Hide apps';
-        card.style.boxShadow = isOpen ? '' : '0 0 0 2px #67EADD';
+        card.style.boxShadow = isOpen ? '' : '0 0 0 2px #3B82F6';
       }
       </script>
 
