@@ -459,19 +459,25 @@
 
     <!-- Request Type Breakdown -->
     <div class="panel" style="margin-bottom:20px;">
-      <div class="panel-title">New Tickets by Request Type — Mon 13 Apr – Sun 19 Apr 2026 &nbsp;·&nbsp; 24 total (team-assigned)</div>
+      <div class="panel-title">New Tickets by Request Type — Mon 13 Apr – Sun 19 Apr 2026 &nbsp;·&nbsp; 27 tickets (excl. New Cloud Resource)</div>
 
       <div class="rt-row">
-        <div class="rt-label">Demo Infrastructure</div>
+        <div class="rt-label">Sandbox Related</div>
         <div class="rt-bar-wrap"><div class="rt-bar" style="width:100%;background:#1D4ED8;"></div></div>
-        <div class="rt-count">19</div>
-        <div class="rt-pct">79%</div>
+        <div class="rt-count">9</div>
+        <div class="rt-pct">33%</div>
       </div>
-      <div class="rt-row clickable" onclick="toggleExpand(this)" title="Click to see tickets">
-        <div class="rt-label" style="color:#7C3AED;">Request New Application</div>
-        <div class="rt-bar-wrap"><div class="rt-bar" style="width:26.3%;background:#7C3AED;"></div></div>
+      <div class="rt-row">
+        <div class="rt-label">Workspace Access</div>
+        <div class="rt-bar-wrap"><div class="rt-bar" style="width:66.7%;background:#0891B2;"></div></div>
+        <div class="rt-count">6</div>
+        <div class="rt-pct">22%</div>
+      </div>
+      <div class="rt-row clickable" onclick="toggleExpand(this)" title="Click to see applications">
+        <div class="rt-label" style="color:#7C3AED;">New Application Request</div>
+        <div class="rt-bar-wrap"><div class="rt-bar" style="width:55.6%;background:#7C3AED;"></div></div>
         <div class="rt-count" style="color:#7C3AED;">5</div>
-        <div class="rt-pct">21%</div>
+        <div class="rt-pct">19%</div>
         <div class="rt-chevron">▶</div>
       </div>
       <div class="rt-expand" id="expand-rna">
@@ -482,6 +488,30 @@
           <div class="app-chip">JIRA On-prem</div>
           <div class="app-chip">Confluence On-prem</div>
         </div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-label">Azure Related</div>
+        <div class="rt-bar-wrap"><div class="rt-bar" style="width:33.3%;background:#D97706;"></div></div>
+        <div class="rt-count">3</div>
+        <div class="rt-pct">11%</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-label">Credentials</div>
+        <div class="rt-bar-wrap"><div class="rt-bar" style="width:22.2%;background:#059669;"></div></div>
+        <div class="rt-count">2</div>
+        <div class="rt-pct">7%</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-label">GCP Related</div>
+        <div class="rt-bar-wrap"><div class="rt-bar" style="width:11.1%;background:#64748B;"></div></div>
+        <div class="rt-count">1</div>
+        <div class="rt-pct">4%</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-label">Verification Code</div>
+        <div class="rt-bar-wrap"><div class="rt-bar" style="width:11.1%;background:#DC2626;"></div></div>
+        <div class="rt-count">1</div>
+        <div class="rt-pct">4%</div>
       </div>
     </div>
 
@@ -1020,25 +1050,19 @@
           </div>
         </div>
 
-        <!-- Request Type Shift Q4 → Q1 -->
+        <!-- Request Type Breakdown (90 Days, excl. Cloud Resource) -->
         <div class="qoq-panel">
-          <div class="qoq-panel-title">Request Type Shift — Q4 → Q1</div>
-          <div class="rt-compare">
-            <div class="rt-col">
-              <div class="rt-col-title" style="color:#64748B;">📦 Q4 2025 (Dec–Feb)</div>
-              <div class="rt-bar-row"><div class="rt-bar-label">Demo Infrastructure</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:93%;background:#1D4ED8;">79</div></div><div class="rt-bar-pct">93%</div></div>
-              <div class="rt-bar-row"><div class="rt-bar-label">New Cloud Resource</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:4%;background:#0891B2;">3</div></div><div class="rt-bar-pct">4%</div></div>
-              <div class="rt-bar-row"><div class="rt-bar-label">New App Request</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:2%;background:#7C3AED;">2</div></div><div class="rt-bar-pct">2%</div></div>
-              <div class="rt-bar-row"><div class="rt-bar-label">Other</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:1%;background:#94A3B8;">1</div></div><div class="rt-bar-pct">1%</div></div>
-            </div>
-            <div class="rt-col">
-              <div class="rt-col-title" style="color:#1D4ED8;">📦 Q1 2026 (Mar–Apr)</div>
-              <div class="rt-bar-row"><div class="rt-bar-label">Demo Infrastructure</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:88%;background:#1D4ED8;">84</div></div><div class="rt-bar-pct">88%</div></div>
-              <div class="rt-bar-row"><div class="rt-bar-label">New App Request</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:9%;background:#7C3AED;">9</div></div><div class="rt-bar-pct" style="color:#7C3AED;font-weight:800;">9% ↑</div></div>
-              <div class="rt-bar-row"><div class="rt-bar-label">New Cloud Resource</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:3%;background:#0891B2;">3</div></div><div class="rt-bar-pct">3%</div></div>
-              <div class="rt-bar-row"><div class="rt-bar-label">Other</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:0%;background:#94A3B8;"></div></div><div class="rt-bar-pct">0%</div></div>
-              <div style="margin-top:10px;background:#F5F3FF;border:1px solid #DDD6FE;border-radius:6px;padding:6px 8px;font-size:0.63rem;color:#5B21B6;font-weight:600;">💡 New App Requests grew from 2% → 9% — watch this trend</div>
-            </div>
+          <div class="qoq-panel-title">Request Type Breakdown — 90 Days (excl. New Cloud Resource)</div>
+          <div style="padding:12px 16px;">
+            <div class="rt-bar-row"><div class="rt-bar-label">Sandbox Related</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:96%;background:#1D4ED8;">24</div></div><div class="rt-bar-pct">25%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">Workspace Access</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:100%;background:#0891B2;">25</div></div><div class="rt-bar-pct">26%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">New App Request</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:76%;background:#7C3AED;">19</div></div><div class="rt-bar-pct">20%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">Credentials</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:40%;background:#059669;">10</div></div><div class="rt-bar-pct">11%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">Azure Related</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:20%;background:#D97706;">5</div></div><div class="rt-bar-pct">5%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">GCP Related</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:12%;background:#64748B;">3</div></div><div class="rt-bar-pct">3%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">Verification Code</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:12%;background:#DC2626;">3</div></div><div class="rt-bar-pct">3%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">Others</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:20%;background:#94A3B8;">5</div></div><div class="rt-bar-pct">5%</div></div>
+            <div style="margin-top:10px;background:#F5F3FF;border:1px solid #DDD6FE;border-radius:6px;padding:6px 8px;font-size:0.63rem;color:#5B21B6;font-weight:600;">💡 New App Requests (20%) growing steadily — up from ~2% in Q4 2025</div>
           </div>
         </div>
       </div>
