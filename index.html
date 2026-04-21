@@ -587,135 +587,183 @@
       </div>
     </div>
 
-    <!-- Per-User Resolution Time -->
+    <!-- Per-User Resolution Time — Card Layout -->
     <div class="panel" style="margin-bottom:20px;">
-      <div class="panel-title">Resolution Time by Team Member — Mon 13 Apr – Sun 19 Apr 2026</div>
+      <div class="panel-title">How Fast Did Each Person Close Tickets? — Mon 13 Apr – Sun 19 Apr 2026 <span class="info-icon">i<span class="tooltip">This section shows how quickly each team member handled tickets this week — both fresh new ones and older ones that had been waiting.</span></span></div>
 
-      <!-- Section A: New tickets -->
-      <div style="padding:10px 20px 6px;background:#F0FDF4;border-bottom:1px solid #BBF7D0;">
+      <!-- Section A: Fresh tickets -->
+      <div style="padding:10px 20px 8px;background:#F0FDF4;border-bottom:1px solid #BBF7D0;">
         <span style="font-size:0.7rem;font-weight:700;color:#065F46;text-transform:uppercase;letter-spacing:0.06em;">
-          🟢 New Requests — Same-Week Resolution
-          <span class="info-icon" style="background:#059669;">i<span class="tooltip">Tickets that came in AND were closed within this week. Shows how fast the team handles fresh requests.</span></span>
+          🟢 Fresh Tickets — Opened &amp; Closed This Week
+          <span class="info-icon" style="background:#059669;">i<span class="tooltip">These are new tickets that came in this week AND were fully resolved within the same week. A great sign of fast response.</span></span>
         </span>
       </div>
-      <table class="ri-table">
-        <thead>
-          <tr>
-            <th style="width:220px;">Team Member</th>
-            <th class="c"><span class="th-wrap">Tickets <span class="info-icon">i<span class="tooltip">New tickets raised this week that were also closed this week</span></span></span></th>
-            <th class="c"><span class="th-wrap">Avg Speed <span class="info-icon">i<span class="tooltip">How fast on average this person closed new tickets this week</span></span></span></th>
-            <th class="c"><span class="th-wrap">Fastest <span class="info-icon">i<span class="tooltip">The new ticket closed the quickest</span></span></span></th>
-            <th class="c"><span class="th-wrap">Slowest <span class="info-icon">i<span class="tooltip">The new ticket that took the longest — still resolved within the week</span></span></span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><div class="user-cell"><div class="avatar" style="background:#1D4ED8;width:28px;height:28px;font-size:0.62rem;">SK</div><span style="font-weight:600;color:#1E293B;">Swaraj Kumar</span></div></td>
-            <td class="c" style="color:#64748B;font-weight:600;">5</td>
-            <td class="c"><span class="ri-pill fast">1.1d</span></td>
-            <td class="c" style="font-size:0.75rem;color:#059669;font-weight:700;">24m</td>
-            <td class="c" style="font-size:0.75rem;color:#0369A1;font-weight:700;">2.2d</td>
-          </tr>
-          <tr>
-            <td><div class="user-cell"><div class="avatar" style="background:#D97706;width:28px;height:28px;font-size:0.62rem;">FO</div><span style="font-weight:600;color:#1E293B;">Federico Oro</span></div></td>
-            <td class="c" style="color:#64748B;font-weight:600;">1</td>
-            <td class="c"><span class="ri-pill fast">19m</span></td>
-            <td class="c" style="font-size:0.75rem;color:#059669;font-weight:700;">19m</td>
-            <td class="c" style="font-size:0.75rem;color:#059669;font-weight:700;">19m</td>
-          </tr>
-          <tr>
-            <td><div class="user-cell"><div class="avatar" style="background:#7C3AED;width:28px;height:28px;font-size:0.62rem;">ID</div><span style="font-weight:600;color:#1E293B;">Isha Dewal</span></div></td>
-            <td class="c" style="color:#64748B;font-weight:600;">3</td>
-            <td class="c"><span class="ri-pill fast">0.7d</span></td>
-            <td class="c" style="font-size:0.75rem;color:#059669;font-weight:700;">5.5h</td>
-            <td class="c" style="font-size:0.75rem;color:#0369A1;font-weight:700;">23.8h</td>
-          </tr>
-          <tr>
-            <td><div class="user-cell"><div class="avatar" style="background:#DC2626;width:28px;height:28px;font-size:0.62rem;">SA</div><span style="font-weight:600;color:#1E293B;">Sherwin Antony</span></div></td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-          </tr>
-          <tr>
-            <td><div class="user-cell"><div class="avatar" style="background:#0891B2;width:28px;height:28px;font-size:0.62rem;">KD</div><span style="font-weight:600;color:#1E293B;">Khambat Dagha</span></div></td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-          </tr>
-          <tr>
-            <td><div class="user-cell"><div class="avatar" style="background:#BE185D;width:28px;height:28px;font-size:0.62rem;">MJ</div><span style="font-weight:600;color:#1E293B;">Matias Juan</span></div></td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-          </tr>
-        </tbody>
-      </table>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:16px 20px 20px;">
 
-      <!-- Section B: Backlog cleared -->
-      <div style="padding:10px 20px 6px;background:#FFF7ED;border-top:2px solid #E2E8F0;border-bottom:1px solid #FED7AA;">
+        <!-- Swaraj card -->
+        <div style="background:#F8FAFC;border:1.5px solid #BFDBFE;border-radius:14px;padding:18px 14px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;">
+            <div class="avatar" style="background:#1D4ED8;width:42px;height:42px;font-size:0.75rem;">SK</div>
+          </div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.83rem;margin-bottom:10px;">Swaraj Kumar</div>
+          <div style="background:#DBEAFE;color:#1D4ED8;font-size:1.6rem;font-weight:800;border-radius:10px;padding:5px 0;margin-bottom:4px;">5</div>
+          <div style="font-size:0.63rem;color:#64748B;margin-bottom:14px;">new tickets closed this week</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;">
+            <div style="background:#F0FDF4;border-radius:8px;padding:7px 4px;">
+              <div style="font-size:0.58rem;color:#64748B;margin-bottom:2px;">Avg time <span class="info-icon" style="font-size:0.52rem;width:10px;height:10px;line-height:10px;">i<span class="tooltip">Average time taken to close a new ticket this week</span></span></div>
+              <div style="font-size:0.82rem;font-weight:700;color:#059669;">1.1d</div>
+            </div>
+            <div style="background:#F0FDF4;border-radius:8px;padding:7px 4px;">
+              <div style="font-size:0.58rem;color:#64748B;margin-bottom:2px;">⚡ Fastest</div>
+              <div style="font-size:0.82rem;font-weight:700;color:#059669;">24m</div>
+            </div>
+            <div style="background:#EFF6FF;border-radius:8px;padding:7px 4px;">
+              <div style="font-size:0.58rem;color:#64748B;margin-bottom:2px;">🐢 Slowest</div>
+              <div style="font-size:0.82rem;font-weight:700;color:#0369A1;">2.2d</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Federico card -->
+        <div style="background:#F8FAFC;border:1.5px solid #FDE68A;border-radius:14px;padding:18px 14px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;">
+            <div class="avatar" style="background:#D97706;width:42px;height:42px;font-size:0.75rem;">FO</div>
+          </div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.83rem;margin-bottom:10px;">Federico Oro</div>
+          <div style="background:#FEF3C7;color:#D97706;font-size:1.6rem;font-weight:800;border-radius:10px;padding:5px 0;margin-bottom:4px;">1</div>
+          <div style="font-size:0.63rem;color:#64748B;margin-bottom:14px;">new ticket closed this week</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;">
+            <div style="background:#F0FDF4;border-radius:8px;padding:7px 4px;">
+              <div style="font-size:0.58rem;color:#64748B;margin-bottom:2px;">Avg time <span class="info-icon" style="font-size:0.52rem;width:10px;height:10px;line-height:10px;">i<span class="tooltip">Average time taken to close a new ticket this week</span></span></div>
+              <div style="font-size:0.82rem;font-weight:700;color:#059669;">19m</div>
+            </div>
+            <div style="background:#F0FDF4;border-radius:8px;padding:7px 4px;">
+              <div style="font-size:0.58rem;color:#64748B;margin-bottom:2px;">⚡ Fastest</div>
+              <div style="font-size:0.82rem;font-weight:700;color:#059669;">19m</div>
+            </div>
+            <div style="background:#F0FDF4;border-radius:8px;padding:7px 4px;">
+              <div style="font-size:0.58rem;color:#64748B;margin-bottom:2px;">🐢 Slowest</div>
+              <div style="font-size:0.82rem;font-weight:700;color:#059669;">19m</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Isha card -->
+        <div style="background:#F8FAFC;border:1.5px solid #DDD6FE;border-radius:14px;padding:18px 14px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;">
+            <div class="avatar" style="background:#7C3AED;width:42px;height:42px;font-size:0.75rem;">ID</div>
+          </div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.83rem;margin-bottom:10px;">Isha Dewal</div>
+          <div style="background:#EDE9FE;color:#7C3AED;font-size:1.6rem;font-weight:800;border-radius:10px;padding:5px 0;margin-bottom:4px;">3</div>
+          <div style="font-size:0.63rem;color:#64748B;margin-bottom:14px;">new tickets closed this week</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;">
+            <div style="background:#F0FDF4;border-radius:8px;padding:7px 4px;">
+              <div style="font-size:0.58rem;color:#64748B;margin-bottom:2px;">Avg time <span class="info-icon" style="font-size:0.52rem;width:10px;height:10px;line-height:10px;">i<span class="tooltip">Average time taken to close a new ticket this week</span></span></div>
+              <div style="font-size:0.82rem;font-weight:700;color:#059669;">0.7d</div>
+            </div>
+            <div style="background:#F0FDF4;border-radius:8px;padding:7px 4px;">
+              <div style="font-size:0.58rem;color:#64748B;margin-bottom:2px;">⚡ Fastest</div>
+              <div style="font-size:0.82rem;font-weight:700;color:#059669;">5.5h</div>
+            </div>
+            <div style="background:#EFF6FF;border-radius:8px;padding:7px 4px;">
+              <div style="font-size:0.58rem;color:#64748B;margin-bottom:2px;">🐢 Slowest</div>
+              <div style="font-size:0.82rem;font-weight:700;color:#0369A1;">23.8h</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Section B: Old backlog cleared -->
+      <div style="padding:10px 20px 8px;background:#FFF7ED;border-top:2px solid #E2E8F0;border-bottom:1px solid #FED7AA;">
         <span style="font-size:0.7rem;font-weight:700;color:#92400E;text-transform:uppercase;letter-spacing:0.06em;">
-          📂 Old Backlog — Cleared This Week
-          <span class="info-icon" style="background:#D97706;">i<span class="tooltip">Tickets that were raised weeks or months ago and finally closed this week. Shows backlog progress — not current speed.</span></span>
+          📂 Old Pending Tickets — Finally Closed This Week
+          <span class="info-icon" style="background:#D97706;">i<span class="tooltip">These tickets were raised weeks or months ago and had been waiting. Closing them this week shows great backlog clean-up effort — not a measure of current speed.</span></span>
         </span>
       </div>
-      <table class="ri-table">
-        <thead>
-          <tr>
-            <th style="width:220px;">Team Member</th>
-            <th class="c"><span class="th-wrap">Tickets Cleared <span class="info-icon">i<span class="tooltip">How many old pending tickets this person closed this week</span></span></span></th>
-            <th class="c"><span class="th-wrap">Avg Age <span class="info-icon">i<span class="tooltip">On average, how old were these tickets when they were finally closed</span></span></span></th>
-            <th class="c"><span class="th-wrap">Newest Closed <span class="info-icon">i<span class="tooltip">The most recent backlog ticket closed — least time it sat waiting</span></span></span></th>
-            <th class="c"><span class="th-wrap">Oldest Closed <span class="info-icon">i<span class="tooltip">The oldest backlog ticket that was finally resolved this week</span></span></span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><div class="user-cell"><div class="avatar" style="background:#1D4ED8;width:28px;height:28px;font-size:0.62rem;">SK</div><span style="font-weight:600;color:#1E293B;">Swaraj Kumar</span></div></td>
-            <td class="c" style="color:#64748B;font-weight:600;">8</td>
-            <td class="c"><span class="ri-pill slow">25.6d</span></td>
-            <td class="c" style="font-size:0.75rem;color:#0369A1;font-weight:700;">5.9d</td>
-            <td class="c" style="font-size:0.75rem;color:#DC2626;font-weight:700;">48.3d</td>
-          </tr>
-          <tr>
-            <td><div class="user-cell"><div class="avatar" style="background:#D97706;width:28px;height:28px;font-size:0.62rem;">FO</div><span style="font-weight:600;color:#1E293B;">Federico Oro</span></div></td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-          </tr>
-          <tr>
-            <td><div class="user-cell"><div class="avatar" style="background:#7C3AED;width:28px;height:28px;font-size:0.62rem;">ID</div><span style="font-weight:600;color:#1E293B;">Isha Dewal</span></div></td>
-            <td class="c" style="color:#64748B;font-weight:600;">6</td>
-            <td class="c"><span class="ri-pill slow">~52d</span></td>
-            <td class="c" style="font-size:0.75rem;color:#0369A1;font-weight:700;">—</td>
-            <td class="c" style="font-size:0.75rem;color:#DC2626;font-weight:700;">139.9d</td>
-          </tr>
-          <tr>
-            <td><div class="user-cell"><div class="avatar" style="background:#DC2626;width:28px;height:28px;font-size:0.62rem;">SA</div><span style="font-weight:600;color:#1E293B;">Sherwin Antony</span></div></td>
-            <td class="c" style="color:#64748B;font-weight:600;">1</td>
-            <td class="c"><span class="ri-pill slow">65.4d</span></td>
-            <td class="c" style="font-size:0.75rem;color:#DC2626;font-weight:700;">65.4d</td>
-            <td class="c" style="font-size:0.75rem;color:#DC2626;font-weight:700;">65.4d</td>
-          </tr>
-          <tr>
-            <td><div class="user-cell"><div class="avatar" style="background:#0891B2;width:28px;height:28px;font-size:0.62rem;">KD</div><span style="font-weight:600;color:#1E293B;">Khambat Dagha</span></div></td>
-            <td class="c" style="color:#64748B;font-weight:600;">1</td>
-            <td class="c"><span class="ri-pill slow">31.0d</span></td>
-            <td class="c" style="font-size:0.75rem;color:#DC2626;font-weight:700;">31.0d</td>
-            <td class="c" style="font-size:0.75rem;color:#DC2626;font-weight:700;">31.0d</td>
-          </tr>
-          <tr>
-            <td><div class="user-cell"><div class="avatar" style="background:#BE185D;width:28px;height:28px;font-size:0.62rem;">MJ</div><span style="font-weight:600;color:#1E293B;">Matias Juan</span></div></td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-            <td class="c" style="color:#94A3B8;">—</td>
-          </tr>
-        </tbody>
-      </table>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:16px 20px 20px;">
+
+        <!-- Swaraj backlog card -->
+        <div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:14px;padding:14px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:6px;">
+            <div class="avatar" style="background:#1D4ED8;width:36px;height:36px;font-size:0.65rem;">SK</div>
+          </div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.78rem;margin-bottom:8px;">Swaraj Kumar</div>
+          <div style="background:#FEF3C7;color:#D97706;font-size:1.3rem;font-weight:800;border-radius:8px;padding:3px 0;margin-bottom:3px;">8</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:10px;">old tickets cleared</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+            <div style="background:#fff;border:1px solid #FDE68A;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.57rem;color:#64748B;margin-bottom:2px;">Avg wait <span class="info-icon" style="font-size:0.5rem;width:9px;height:9px;line-height:9px;">i<span class="tooltip">How long these tickets had been sitting before they were finally closed</span></span></div>
+              <div style="font-size:0.78rem;font-weight:700;color:#D97706;">25.6d</div>
+            </div>
+            <div style="background:#fff;border:1px solid #FCA5A5;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.57rem;color:#64748B;margin-bottom:2px;">Longest wait <span class="info-icon" style="font-size:0.5rem;width:9px;height:9px;line-height:9px;">i<span class="tooltip">The oldest ticket that was finally resolved this week</span></span></div>
+              <div style="font-size:0.78rem;font-weight:700;color:#DC2626;">48.3d</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Isha backlog card -->
+        <div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:14px;padding:14px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:6px;">
+            <div class="avatar" style="background:#7C3AED;width:36px;height:36px;font-size:0.65rem;">ID</div>
+          </div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.78rem;margin-bottom:8px;">Isha Dewal</div>
+          <div style="background:#FEF3C7;color:#D97706;font-size:1.3rem;font-weight:800;border-radius:8px;padding:3px 0;margin-bottom:3px;">6</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:10px;">old tickets cleared</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+            <div style="background:#fff;border:1px solid #FDE68A;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.57rem;color:#64748B;margin-bottom:2px;">Avg wait <span class="info-icon" style="font-size:0.5rem;width:9px;height:9px;line-height:9px;">i<span class="tooltip">How long these tickets had been sitting before they were finally closed</span></span></div>
+              <div style="font-size:0.78rem;font-weight:700;color:#D97706;">~52d</div>
+            </div>
+            <div style="background:#fff;border:1px solid #FCA5A5;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.57rem;color:#64748B;margin-bottom:2px;">Longest wait <span class="info-icon" style="font-size:0.5rem;width:9px;height:9px;line-height:9px;">i<span class="tooltip">The oldest ticket that was finally resolved this week</span></span></div>
+              <div style="font-size:0.78rem;font-weight:700;color:#DC2626;">139.9d</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sherwin backlog card -->
+        <div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:14px;padding:14px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:6px;">
+            <div class="avatar" style="background:#DC2626;width:36px;height:36px;font-size:0.65rem;">SA</div>
+          </div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.78rem;margin-bottom:8px;">Sherwin Antony</div>
+          <div style="background:#FEF3C7;color:#D97706;font-size:1.3rem;font-weight:800;border-radius:8px;padding:3px 0;margin-bottom:3px;">1</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:10px;">old ticket cleared</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+            <div style="background:#fff;border:1px solid #FDE68A;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.57rem;color:#64748B;margin-bottom:2px;">Avg wait <span class="info-icon" style="font-size:0.5rem;width:9px;height:9px;line-height:9px;">i<span class="tooltip">How long this ticket had been sitting before it was finally closed</span></span></div>
+              <div style="font-size:0.78rem;font-weight:700;color:#D97706;">65.4d</div>
+            </div>
+            <div style="background:#fff;border:1px solid #FCA5A5;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.57rem;color:#64748B;margin-bottom:2px;">Longest wait <span class="info-icon" style="font-size:0.5rem;width:9px;height:9px;line-height:9px;">i<span class="tooltip">The oldest ticket that was finally resolved this week</span></span></div>
+              <div style="font-size:0.78rem;font-weight:700;color:#DC2626;">65.4d</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Khambat backlog card -->
+        <div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:14px;padding:14px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:6px;">
+            <div class="avatar" style="background:#0891B2;width:36px;height:36px;font-size:0.65rem;">KD</div>
+          </div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.78rem;margin-bottom:8px;">Khambat Dagha</div>
+          <div style="background:#FEF3C7;color:#D97706;font-size:1.3rem;font-weight:800;border-radius:8px;padding:3px 0;margin-bottom:3px;">1</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:10px;">old ticket cleared</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+            <div style="background:#fff;border:1px solid #FDE68A;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.57rem;color:#64748B;margin-bottom:2px;">Avg wait <span class="info-icon" style="font-size:0.5rem;width:9px;height:9px;line-height:9px;">i<span class="tooltip">How long this ticket had been sitting before it was finally closed</span></span></div>
+              <div style="font-size:0.78rem;font-weight:700;color:#D97706;">31.0d</div>
+            </div>
+            <div style="background:#fff;border:1px solid #FCA5A5;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.57rem;color:#64748B;margin-bottom:2px;">Longest wait <span class="info-icon" style="font-size:0.5rem;width:9px;height:9px;line-height:9px;">i<span class="tooltip">The oldest ticket that was finally resolved this week</span></span></div>
+              <div style="font-size:0.78rem;font-weight:700;color:#DC2626;">31.0d</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <!-- Week-over-Week Comparison — 4-week chart -->
@@ -897,11 +945,11 @@
         <thead>
           <tr>
             <th style="width:260px;">Team Member</th>
-            <th class="num">New Assigned</th>
-            <th class="num">Resolved — New</th>
-            <th class="num">Resolved — Backlog</th>
-            <th class="num">Total Resolved</th>
-            <th class="num">Open Now</th>
+            <th class="num">New Assigned <span class="info-icon" style="font-weight:400;">i<span class="tooltip">New tickets that came in this week and were assigned to this person</span></span></th>
+            <th class="num">Closed — New <span class="info-icon" style="font-weight:400;">i<span class="tooltip">How many of this week's new tickets this person fully closed</span></span></th>
+            <th class="num">Closed — Old <span class="info-icon" style="font-weight:400;">i<span class="tooltip">Older tickets that had been waiting a while and were finally closed this week</span></span></th>
+            <th class="num">Total Closed <span class="info-icon" style="font-weight:400;">i<span class="tooltip">All tickets this person closed this week — both new and old combined</span></span></th>
+            <th class="num">Still Open <span class="info-icon" style="font-weight:400;">i<span class="tooltip">Tickets currently still waiting to be resolved (includes older ones too)</span></span></th>
           </tr>
         </thead>
         <tbody>
