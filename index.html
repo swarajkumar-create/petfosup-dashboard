@@ -195,6 +195,15 @@
   .ri-pill.slow { background: #FEE2E2; color: #991B1B; }
   .ri-pill.mid  { background: #FEF3C7; color: #92400E; }
 
+  /* WoW chart toggle buttons */
+  .wow-btn {
+    padding: 5px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 600;
+    border: 1.5px solid #CBD5E1; background: #F8FAFC; color: #64748B; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .wow-btn:hover { border-color: #1D4ED8; color: #1D4ED8; }
+  .wow-btn.wow-btn-active { background: #1D4ED8; border-color: #1D4ED8; color: #fff; }
+
   /* Request type bar chart */
   .rt-row {
     display: flex;
@@ -523,19 +532,19 @@
 
     <!-- Resolution Insights panel -->
     <div class="panel" style="margin-bottom:20px;">
-      <div class="panel-title">Resolution Time Insights — Mon 13 Apr – Sun 19 Apr 2026 &nbsp;·&nbsp; based on 10 resolved tickets</div>
+      <div class="panel-title">Resolution Time Insights — Mon 13 Apr – Sun 19 Apr 2026 &nbsp;·&nbsp; based on 9 same-week closures</div>
 
       <!-- 4 summary stats -->
       <div class="ri-grid">
         <div class="ri-stat">
           <div class="ri-stat-label">Median Resolution</div>
-          <div class="ri-stat-value">4.1d</div>
-          <div class="ri-stat-sub">Better measure vs avg</div>
+          <div class="ri-stat-value">0.9d</div>
+          <div class="ri-stat-sub">New tickets closed within week</div>
         </div>
         <div class="ri-stat">
           <div class="ri-stat-label">Avg Resolution</div>
-          <div class="ri-stat-value amber">13.5d</div>
-          <div class="ri-stat-sub">Skewed by old backlog</div>
+          <div class="ri-stat-value green">0.9d</div>
+          <div class="ri-stat-sub">Fast same-week turnaround</div>
         </div>
         <div class="ri-stat">
           <div class="ri-stat-label">Fastest Resolved</div>
@@ -543,9 +552,9 @@
           <div class="ri-stat-sub">PETFOSUP-2381 · Federico</div>
         </div>
         <div class="ri-stat">
-          <div class="ri-stat-label">Slowest Resolved</div>
-          <div class="ri-stat-value red">65.4d</div>
-          <div class="ri-stat-sub">PETFOSUP-2144 · Sherwin</div>
+          <div class="ri-stat-label">Slowest (Same Week)</div>
+          <div class="ri-stat-value amber">2.2d</div>
+          <div class="ri-stat-sub">PETFOSUP-2341 · Credentials</div>
         </div>
       </div>
 
@@ -564,25 +573,18 @@
           <tr>
             <td>
               <span class="ri-rt-dot" style="background:#1D4ED8;"></span>
-              <strong>Demo Infrastructure</strong>
+              <strong>Demo Infrastructure (Submit)</strong>
             </td>
             <td class="c">9</td>
-            <td class="c"><span class="ri-pill fast">2.2d</span></td>
-            <td class="c"><span class="ri-pill mid">11.1d</span></td>
-            <td class="c" style="font-size:0.75rem;color:#64748B;">19m – 65.4d</td>
-          </tr>
-          <tr>
-            <td>
-              <span class="ri-rt-dot" style="background:#7C3AED;"></span>
-              <strong>Request New Application</strong>
-            </td>
-            <td class="c">1</td>
-            <td class="c"><span class="ri-pill slow">35.1d</span></td>
-            <td class="c"><span class="ri-pill slow">35.1d</span></td>
-            <td class="c" style="font-size:0.75rem;color:#64748B;">35.1d</td>
+            <td class="c"><span class="ri-pill fast">0.9d</span></td>
+            <td class="c"><span class="ri-pill fast">0.9d</span></td>
+            <td class="c" style="font-size:0.75rem;color:#64748B;">19m – 2.2d</td>
           </tr>
         </tbody>
       </table>
+      <div style="padding:8px 16px;font-size:0.68rem;color:#64748B;background:#F8FAFC;border-top:1px solid #E2E8F0;">
+        ℹ️ Scope: new W16 tickets resolved within the same week. Backlog clearance (17 older tickets also resolved this week) tracked separately in the team member table below.
+      </div>
     </div>
 
     <!-- Per-User Resolution Time -->
@@ -716,64 +718,158 @@
       </table>
     </div>
 
-    <!-- Week-over-Week Comparison -->
+    <!-- Week-over-Week Comparison — Interactive Chart -->
     <div class="panel" style="margin-bottom:20px;">
-      <div class="panel-title">Resolution Time: Week-over-Week Comparison</div>
-      <table class="ri-table">
-        <thead>
-          <tr>
-            <th style="width:200px;">Metric</th>
-            <th class="c" style="width:200px;">Apr 6–12 (W15)</th>
-            <th class="c" style="width:200px;">Apr 13–19 (W16)</th>
-            <th class="c">Change</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="font-weight:600;color:#1E293B;">Tickets in sample</td>
-            <td class="c" style="color:#64748B;font-weight:700;">15</td>
-            <td class="c" style="color:#64748B;font-weight:700;">10</td>
-            <td class="c" style="color:#94A3B8;font-size:0.75rem;">—</td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#1E293B;">Median Resolution ⭐</td>
-            <td class="c"><span class="ri-pill slow">6.5d</span></td>
-            <td class="c"><span class="ri-pill fast">4.1d</span></td>
-            <td class="c"><span style="color:#059669;font-weight:800;font-size:0.85rem;">↓ 2.4d faster (37%)</span></td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#1E293B;">Avg Resolution</td>
-            <td class="c"><span class="ri-pill slow">16.4d</span></td>
-            <td class="c"><span class="ri-pill mid">13.5d</span></td>
-            <td class="c"><span style="color:#059669;font-weight:800;font-size:0.85rem;">↓ 2.9d faster (18%)</span></td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#1E293B;">Fastest Resolved</td>
-            <td class="c" style="color:#64748B;">47m</td>
-            <td class="c" style="color:#064;">19m</td>
-            <td class="c"><span style="color:#059669;font-weight:700;font-size:0.8rem;">↑ Improved</span></td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#1E293B;">Slowest Resolved</td>
-            <td class="c" style="color:#DC2626;font-weight:700;">101.4d</td>
-            <td class="c" style="color:#DC2626;font-weight:700;">65.4d</td>
-            <td class="c"><span style="color:#059669;font-weight:700;font-size:0.8rem;">↑ Improved</span></td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#1E293B;">Swaraj — Median</td>
-            <td class="c"><span class="ri-pill mid">4.0d</span></td>
-            <td class="c"><span class="ri-pill fast">4.1d</span></td>
-            <td class="c" style="color:#94A3B8;font-size:0.78rem;">≈ Stable</td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#1E293B;">Isha — Median</td>
-            <td class="c"><span class="ri-pill slow">13.7d</span></td>
-            <td class="c" style="color:#94A3B8;font-size:0.75rem;">No data</td>
-            <td class="c" style="color:#94A3B8;font-size:0.75rem;">—</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="panel-title">Week-over-Week Comparison &nbsp;·&nbsp; Volume &amp; Resolution Speed</div>
+
+      <!-- Toggle buttons -->
+      <div style="padding:12px 20px 0;display:flex;gap:8px;flex-wrap:wrap;">
+        <button onclick="wowToggle('both')" id="wow-btn-both" class="wow-btn wow-btn-active">Volume + Speed</button>
+        <button onclick="wowToggle('volume')" id="wow-btn-volume" class="wow-btn">Volume Only</button>
+        <button onclick="wowToggle('speed')" id="wow-btn-speed" class="wow-btn">Speed Only</button>
+      </div>
+
+      <div style="padding:16px 20px 20px;position:relative;">
+        <canvas id="wowChart" height="220"></canvas>
+      </div>
+
+      <!-- Key insights row -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #E2E8F0;">
+        <div style="padding:12px 16px;border-right:1px solid #E2E8F0;">
+          <div style="font-size:0.65rem;color:#64748B;text-transform:uppercase;font-weight:700;letter-spacing:0.05em;">W15 Created</div>
+          <div style="font-size:1.4rem;font-weight:800;color:#1D4ED8;">20</div>
+          <div style="font-size:0.68rem;color:#64748B;">Apr 6–12</div>
+        </div>
+        <div style="padding:12px 16px;border-right:1px solid #E2E8F0;">
+          <div style="font-size:0.65rem;color:#64748B;text-transform:uppercase;font-weight:700;letter-spacing:0.05em;">W16 Created</div>
+          <div style="font-size:1.4rem;font-weight:800;color:#1D4ED8;">24 <span style="font-size:0.75rem;color:#059669;font-weight:600;">↑20%</span></div>
+          <div style="font-size:0.68rem;color:#64748B;">Apr 13–19</div>
+        </div>
+        <div style="padding:12px 16px;border-right:1px solid #E2E8F0;">
+          <div style="font-size:0.65rem;color:#64748B;text-transform:uppercase;font-weight:700;letter-spacing:0.05em;">Same-Week Median</div>
+          <div style="font-size:1.4rem;font-weight:800;color:#059669;">0.9d <span style="font-size:0.75rem;color:#059669;font-weight:600;">↓5%</span></div>
+          <div style="font-size:0.68rem;color:#64748B;">W16 faster than W15 (0.95d)</div>
+        </div>
+        <div style="padding:12px 16px;">
+          <div style="font-size:0.65rem;color:#64748B;text-transform:uppercase;font-weight:700;letter-spacing:0.05em;">Backlog Cleared</div>
+          <div style="font-size:1.4rem;font-weight:800;color:#7C3AED;">17 <span style="font-size:0.75rem;color:#7C3AED;font-weight:600;">↑W16</span></div>
+          <div style="font-size:0.68rem;color:#64748B;">vs 11 in W15</div>
+        </div>
+      </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script>
+    (function() {
+      const ctx = document.getElementById('wowChart').getContext('2d');
+
+      const labels = ['W15 · Apr 6–12', 'W16 · Apr 13–19'];
+      const created  = [20, 24];
+      const resolved = [15, 26];
+      const medianDays = [0.95, 0.83]; // same-week new-ticket median
+
+      let chart;
+
+      function buildChart(mode) {
+        if (chart) chart.destroy();
+
+        const datasets = [];
+        const yAxes = {};
+
+        if (mode !== 'speed') {
+          datasets.push({
+            type: 'bar',
+            label: 'New Tickets Created',
+            data: created,
+            backgroundColor: 'rgba(29,78,216,0.75)',
+            borderColor: '#1D4ED8',
+            borderWidth: 1.5,
+            borderRadius: 5,
+            yAxisID: 'yVol',
+            order: 2
+          });
+          datasets.push({
+            type: 'bar',
+            label: 'Total Resolved',
+            data: resolved,
+            backgroundColor: 'rgba(5,150,105,0.75)',
+            borderColor: '#059669',
+            borderWidth: 1.5,
+            borderRadius: 5,
+            yAxisID: 'yVol',
+            order: 2
+          });
+          yAxes.yVol = {
+            type: 'linear', position: 'left',
+            title: { display: true, text: 'Tickets', font: { size: 11 }, color: '#64748B' },
+            grid: { color: 'rgba(0,0,0,0.06)' },
+            ticks: { color: '#64748B', font: { size: 11 }, stepSize: 5 },
+            min: 0, max: 35
+          };
+        }
+
+        if (mode !== 'volume') {
+          datasets.push({
+            type: 'line',
+            label: 'Same-Week Median (days)',
+            data: medianDays,
+            borderColor: '#F59E0B',
+            backgroundColor: 'rgba(245,158,11,0.12)',
+            borderWidth: 2.5,
+            pointRadius: 6,
+            pointHoverRadius: 8,
+            pointBackgroundColor: '#F59E0B',
+            tension: 0.3,
+            yAxisID: 'ySpd',
+            order: 1,
+            fill: true
+          });
+          yAxes.ySpd = {
+            type: 'linear', position: 'right',
+            title: { display: true, text: 'Median Days (same-week closures)', font: { size: 11 }, color: '#F59E0B' },
+            grid: { drawOnChartArea: false },
+            ticks: { color: '#F59E0B', font: { size: 11 },
+              callback: v => v.toFixed(2) + 'd' },
+            min: 0, max: 2.0
+          };
+        }
+
+        chart = new Chart(ctx, {
+          data: { labels, datasets },
+          options: {
+            responsive: true,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: {
+                position: 'top',
+                labels: { font: { size: 11 }, color: '#334155', padding: 16, boxWidth: 14 }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(item) {
+                    if (item.dataset.yAxisID === 'ySpd') {
+                      return ` ${item.dataset.label}: ${item.raw.toFixed(2)}d`;
+                    }
+                    return ` ${item.dataset.label}: ${item.raw}`;
+                  }
+                }
+              }
+            },
+            scales: yAxes
+          }
+        });
+      }
+
+      window.wowToggle = function(mode) {
+        ['both','volume','speed'].forEach(m => {
+          document.getElementById('wow-btn-'+m).classList.toggle('wow-btn-active', m === mode);
+        });
+        buildChart(mode);
+      };
+
+      buildChart('both');
+    })();
+    </script>
 
     <!-- Full-width breakdown table -->
     <div class="panel">
