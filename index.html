@@ -538,39 +538,38 @@
           </div>
         </div>
 
-        <!-- RIGHT: Resolution speed -->
-        <div style="padding:14px 20px 16px;display:flex;flex-direction:column;gap:10px;">
+        <!-- RIGHT: Resolution speed — simplified -->
+        <div style="padding:14px 20px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;text-align:center;">
+
           <div style="font-size:0.68rem;font-weight:700;color:#334155;text-transform:uppercase;letter-spacing:0.06em;">
-            ⚡ How Fast Were They Closed?
-            <span class="info-icon">i<span class="tooltip">Only counts tickets that were opened AND fully closed within this same week — 9 out of 24. The rest are still open or were closed in a later week.</span></span>
+            ⚡ Closed This Week
+            <span class="info-icon">i<span class="tooltip">Tickets that were opened AND fully closed within this same week</span></span>
           </div>
 
-          <!-- 4 stat cards -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-            <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:10px 12px;text-align:center;">
-              <div style="font-size:0.62rem;color:#64748B;margin-bottom:3px;">Median close time <span class="info-icon" style="font-size:0.52rem;width:10px;height:10px;line-height:10px;">i<span class="tooltip">The middle value — half the tickets closed faster than this, half slower</span></span></div>
-              <div style="font-size:1.3rem;font-weight:800;color:#059669;">0.9d</div>
+          <!-- Donut + fraction -->
+          <div style="position:relative;width:120px;height:120px;">
+            <svg viewBox="0 0 36 36" style="width:120px;height:120px;transform:rotate(-90deg);">
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#E2E8F0" stroke-width="3.2"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#059669" stroke-width="3.2"
+                stroke-dasharray="37.5 62.5" stroke-linecap="round"/>
+            </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+              <div style="font-size:1.5rem;font-weight:900;color:#059669;line-height:1;">9</div>
+              <div style="font-size:0.65rem;color:#94A3B8;font-weight:600;">of 24</div>
             </div>
-            <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:10px 12px;text-align:center;">
-              <div style="font-size:0.62rem;color:#64748B;margin-bottom:3px;">Average close time <span class="info-icon" style="font-size:0.52rem;width:10px;height:10px;line-height:10px;">i<span class="tooltip">Total time across all 9 tickets divided by 9</span></span></div>
-              <div style="font-size:1.3rem;font-weight:800;color:#059669;">0.9d</div>
-            </div>
-            <div style="background:#ECFDF5;border:1px solid #6EE7B7;border-radius:10px;padding:10px 12px;text-align:center;">
-              <div style="font-size:0.62rem;color:#64748B;margin-bottom:3px;">⚡ Fastest closed</div>
-              <div style="font-size:1.3rem;font-weight:800;color:#059669;">19m</div>
-              <div style="font-size:0.6rem;color:#94A3B8;margin-top:2px;">PETFOSUP-2381 · Federico</div>
-            </div>
-            <div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:10px 12px;text-align:center;">
-              <div style="font-size:0.62rem;color:#64748B;margin-bottom:3px;">🐢 Slowest closed</div>
-              <div style="font-size:1.3rem;font-weight:800;color:#D97706;">2.2d</div>
-              <div style="font-size:0.6rem;color:#94A3B8;margin-top:2px;">PETFOSUP-2341 · Credentials</div>
-            </div>
+          </div>
+
+          <!-- Avg turnaround -->
+          <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:10px 24px;">
+            <div style="font-size:0.62rem;color:#64748B;margin-bottom:2px;">Avg turnaround</div>
+            <div style="font-size:1.4rem;font-weight:800;color:#059669;">0.9d</div>
           </div>
 
           <!-- Scope note -->
-          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:9px 12px;font-size:0.67rem;color:#64748B;line-height:1.5;">
-            <strong style="color:#475569;">Scope:</strong> 9 out of 24 new tickets were opened <em>and</em> fully closed this week — across different request types (Sandbox, Credentials, AWS etc.). The remaining 15 are still open or were resolved in a later week.
+          <div style="font-size:0.65rem;color:#94A3B8;line-height:1.5;max-width:220px;">
+            15 tickets still open or closed in a later week
           </div>
+
         </div>
 
       </div>
