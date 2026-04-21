@@ -245,7 +245,7 @@
   }
 
 
-  /* Info tooltip */
+  /* Info tooltip — global fixed positioning (no clipping) */
   .th-wrap { display: inline-flex; align-items: center; gap: 4px; justify-content: center; }
   .info-icon {
     display: inline-flex; align-items: center; justify-content: center;
@@ -255,32 +255,37 @@
     cursor: default; position: relative; flex-shrink: 0;
     font-style: normal;
   }
-  .info-icon .tooltip {
+  /* Hide inline tooltip spans — we use a global tooltip instead */
+  .info-icon .tooltip { display: none !important; }
+
+  #global-tooltip {
     display: none;
-    position: absolute;
-    bottom: calc(100% + 6px);
-    left: 50%; transform: translateX(-50%);
-    background: #1E293B;
-    color: #F8FAFC;
+    position: fixed;
+    z-index: 9999;
+    background: #111010;
+    color: #E1FFFC;
     font-size: 0.7rem;
     font-weight: 400;
+    font-family: 'Poppins', sans-serif;
     text-transform: none;
     letter-spacing: 0;
     white-space: nowrap;
-    padding: 6px 10px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    z-index: 99;
+    max-width: 280px;
+    white-space: normal;
+    line-height: 1.4;
+    padding: 7px 11px;
+    border-radius: 7px;
+    border: 1px solid rgba(103,234,221,0.3);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
     pointer-events: none;
   }
-  .info-icon .tooltip::after {
+  #global-tooltip::after {
     content: '';
     position: absolute;
     top: 100%; left: 50%; transform: translateX(-50%);
     border: 5px solid transparent;
-    border-top-color: #1E293B;
+    border-top-color: #111010;
   }
-  .info-icon:hover .tooltip { display: block; }
 
   .rate-badge {
     display: inline-block;
@@ -1962,6 +1967,49 @@
       if (b.getAttribute('onclick').includes(name)) b.classList.add('active');
     });
   }
+
+  // ── Global fixed tooltip (never clipped by overflow:hidden) ──────────────
+  (function() {
+    const tip = document.createElement('div');
+    tip.id = 'global-tooltip';
+    document.body.appendChild(tip);
+
+    document.querySelectorAll('.info-icon').forEach(icon => {
+      const inner = icon.querySelector('.tooltip');
+      const text = inner ? inner.textContent.trim() : '';
+      if (!text) return;
+
+      icon.addEventListener('mouseenter', () => {
+        tip.textContent = text;
+        tip.style.display = 'block';
+        positionTip(icon);
+      });
+      icon.addEventListener('mouseleave', () => {
+        tip.style.display = 'none';
+      });
+    });
+
+    function positionTip(icon) {
+      const r = icon.getBoundingClientRect();
+      const tipW = tip.offsetWidth;
+      const tipH = tip.offsetHeight;
+      const margin = 8;
+
+      // Default: above the icon, horizontally centered
+      let top = r.top - tipH - 10;
+      let left = r.left + r.width / 2 - tipW / 2;
+
+      // If goes off top, flip below
+      if (top < margin) top = r.bottom + 10;
+
+      // Keep within left/right viewport bounds
+      if (left < margin) left = margin;
+      if (left + tipW > window.innerWidth - margin) left = window.innerWidth - tipW - margin;
+
+      tip.style.top  = top  + 'px';
+      tip.style.left = left + 'px';
+    }
+  })();
 
 </script>
 </body>
