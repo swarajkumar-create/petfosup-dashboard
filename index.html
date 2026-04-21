@@ -414,8 +414,7 @@
   <!-- Tab Nav -->
   <div class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('weekly')">📅 Weekly Snapshot &nbsp;— W16 Apr 13–19</button>
-    <button class="tab-btn" onclick="switchTab('quarterly')">📊 90-Day Overview &nbsp;— Jan 21 – Apr 20</button>
-    <button class="tab-btn" onclick="switchTab('qoq')">📈 Quarter-over-Quarter &nbsp;— Q4 2025 vs Q1 2026</button>
+    <button class="tab-btn" onclick="switchTab('trends')">📈 Trends &amp; History &nbsp;— Q4 2025 vs Q1 2026</button>
   </div>
 
   <!-- ══ WEEKLY TAB ══════════════════════════════════════════════════════ -->
@@ -868,10 +867,251 @@
   </div><!-- /tab-weekly -->
 
   <!-- ══ QUARTERLY TAB ═══════════════════════════════════════════════════ -->
-  <div id="tab-quarterly" class="tab-pane">
+  <div id="tab-trends" class="tab-pane">
+    <div class="qoq-content">
 
+      <!-- QoQ Hero KPIs -->
+      <div class="qoq-hero">
+        <div class="qoq-hero-card" style="background:linear-gradient(135deg,#1E3A8A,#1D4ED8);color:#fff;">
+          <div class="qoq-hero-label">Total Tickets</div>
+          <div class="qoq-hero-q4">Q4: 85+</div>
+          <div class="qoq-hero-q1">96</div>
+          <div class="qoq-hero-delta" style="color:#93C5FD;">Q1 2026 (partial) ↑13%</div>
+        </div>
+        <div class="qoq-hero-card" style="background:linear-gradient(135deg,#065F46,#059669);color:#fff;">
+          <div class="qoq-hero-label">Avg Resolution Time</div>
+          <div class="qoq-hero-q4">Q4: 21.4 days</div>
+          <div class="qoq-hero-q1">7.9d</div>
+          <div class="qoq-hero-delta" style="color:#6EE7B7;">↓ 63% faster in Q1 🎉</div>
+        </div>
+        <div class="qoq-hero-card" style="background:linear-gradient(135deg,#92400E,#D97706);color:#fff;">
+          <div class="qoq-hero-label">Resolution Rate</div>
+          <div class="qoq-hero-q4">Q4: 91%</div>
+          <div class="qoq-hero-q1">71%</div>
+          <div class="qoq-hero-delta" style="color:#FDE68A;">Q1 tickets still open</div>
+        </div>
+        <div class="qoq-hero-card" style="background:linear-gradient(135deg,#4C1D95,#7C3AED);color:#fff;">
+          <div class="qoq-hero-label">New App Requests</div>
+          <div class="qoq-hero-q4">Q4: 2%</div>
+          <div class="qoq-hero-q1">9%</div>
+          <div class="qoq-hero-delta" style="color:#C4B5FD;">↑ Growing request type</div>
+        </div>
+      </div>
+
+      <!-- Per-person resolution speed comparison -->
+      <div class="qoq-panel">
+        <div class="qoq-panel-title">
+          Resolution Speed — Per Person (Q4 vs Q1)
+          <div class="qoq-legend">
+            <div class="qoq-legend-item"><div class="qoq-legend-dot" style="background:#94A3B8;"></div>Q4 2025 (Dec–Feb)</div>
+            <div class="qoq-legend-item"><div class="qoq-legend-dot" style="background:#059669;"></div>Q1 2026 (Mar–Apr)</div>
+          </div>
+        </div>
+        <div class="dual-bar-chart">
+          <div class="dual-bar-row">
+            <div class="dual-bar-person"><div class="user-cell"><div class="avatar" style="background:#7C3AED;width:22px;height:22px;font-size:0.55rem;">ID</div><span style="font-weight:600;font-size:0.75rem;color:#1E293B;">Isha Dewal</span></div></div>
+            <div class="dual-bars">
+              <div class="dual-bar-track"><div class="dual-bar-fill" style="width:60%;background:#94A3B8;">18.0d (Q4)</div></div>
+              <div class="dual-bar-track"><div class="dual-bar-fill" style="width:29%;background:#059669;">8.6d (Q1)</div></div>
+            </div>
+            <div class="dual-bar-meta" style="color:#059669;">↓ 52%</div>
+          </div>
+          <div class="dual-bar-row">
+            <div class="dual-bar-person"><div class="user-cell"><div class="avatar" style="background:#1D4ED8;width:22px;height:22px;font-size:0.55rem;">SK</div><span style="font-weight:600;font-size:0.75rem;color:#1E293B;">Swaraj Kumar</span></div></div>
+            <div class="dual-bars">
+              <div class="dual-bar-track"><div class="dual-bar-fill" style="width:76%;background:#94A3B8;">22.9d (Q4)</div></div>
+              <div class="dual-bar-track"><div class="dual-bar-fill" style="width:30%;background:#059669;">9.1d (Q1)</div></div>
+            </div>
+            <div class="dual-bar-meta" style="color:#059669;">↓ 60%</div>
+          </div>
+          <div class="dual-bar-row">
+            <div class="dual-bar-person"><div class="user-cell"><div class="avatar" style="background:#D97706;width:22px;height:22px;font-size:0.55rem;">FO</div><span style="font-weight:600;font-size:0.75rem;color:#1E293B;">Federico Oro</span></div></div>
+            <div class="dual-bars">
+              <div class="dual-bar-track"><div class="dual-bar-fill" style="width:95%;background:#94A3B8;">28.4d (Q4)</div></div>
+              <div class="dual-bar-track"><div class="dual-bar-fill" style="width:19%;background:#059669;">5.7d (Q1)</div></div>
+            </div>
+            <div class="dual-bar-meta" style="color:#059669;">↓ 80%</div>
+          </div>
+          <div class="dual-bar-row">
+            <div class="dual-bar-person"><div class="user-cell"><div class="avatar" style="background:#0891B2;width:22px;height:22px;font-size:0.55rem;">KD</div><span style="font-weight:600;font-size:0.75rem;color:#1E293B;">Khambat Dagha</span></div></div>
+            <div class="dual-bars">
+              <div class="dual-bar-track"><div class="dual-bar-fill" style="width:13%;background:#94A3B8;">4.0d (Q4)</div></div>
+              <div class="dual-bar-track"><div class="dual-bar-fill" style="width:21%;background:#0891B2;">6.4d (Q1)</div></div>
+            </div>
+            <div class="dual-bar-meta" style="color:#94A3B8;">↑ +2.4d</div>
+          </div>
+          <div class="dual-bar-row">
+            <div class="dual-bar-person"><div class="user-cell"><div class="avatar" style="background:#DC2626;width:22px;height:22px;font-size:0.55rem;">SA</div><span style="font-weight:600;font-size:0.75rem;color:#1E293B;">Sherwin Antony</span></div></div>
+            <div class="dual-bars">
+              <div class="dual-bar-track"><div class="dual-bar-fill" style="width:37%;background:#94A3B8;">11.0d (Q4)</div></div>
+              <div class="dual-bar-track" style="background:#E2E8F0;"><div style="padding:2px 6px;font-size:0.6rem;color:#94A3B8;">No Q1 tickets yet</div></div>
+            </div>
+            <div class="dual-bar-meta" style="color:#94A3B8;">—</div>
+          </div>
+          <div style="margin-top:12px;padding:10px 0 0;border-top:1px dashed #E2E8F0;display:flex;align-items:center;gap:16px;">
+            <span style="font-size:0.68rem;font-weight:700;color:#475569;">Overall Avg:</span>
+            <span style="font-size:0.8rem;font-weight:700;color:#94A3B8;">Q4: 21.4d</span>
+            <span style="font-size:1rem;color:#059669;">→</span>
+            <span style="font-size:0.8rem;font-weight:700;color:#059669;">Q1: 7.9d</span>
+            <span style="background:#D1FAE5;color:#065F46;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:20px;">↓ 63% faster</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monthly Momentum -->
+      <div class="qoq-panel">
+        <div class="qoq-panel-title">Monthly Momentum — Rolling 90 Days</div>
+        <div style="padding:16px 20px;">
+          <div class="month-cards">
+            <div class="month-card" style="border-left:4px solid #1D4ED8;">
+              <div class="month-card-title" style="color:#1D4ED8;">📅 Jan 21 – Feb 20</div>
+              <div class="month-stat"><span>Tickets Received</span><span class="month-stat-val">77</span></div>
+              <div class="month-stat"><span>Resolved</span><span class="month-stat-val" style="color:#059669;">57</span></div>
+              <div class="month-stat"><span>Open at End</span><span class="month-stat-val" style="color:#DC2626;">20</span></div>
+              <div class="month-stat"><span>Resolution Rate</span><span class="month-stat-val">74%</span></div>
+              <div class="month-stat"><span>Avg Resolution Time</span><span class="month-stat-val" style="color:#D97706;">14.6d</span></div>
+            </div>
+            <div class="month-card" style="border-left:4px solid #7C3AED;">
+              <div class="month-card-title" style="color:#7C3AED;">📅 Feb 21 – Mar 20</div>
+              <div class="month-stat"><span>Tickets Received</span><span class="month-stat-val">80</span></div>
+              <div class="month-stat"><span>Resolved</span><span class="month-stat-val" style="color:#059669;">59</span></div>
+              <div class="month-stat"><span>Open at End</span><span class="month-stat-val" style="color:#DC2626;">21</span></div>
+              <div class="month-stat"><span>Resolution Rate</span><span class="month-stat-val">74%</span></div>
+              <div class="month-stat"><span>Avg Resolution Time</span><span class="month-stat-val" style="color:#D97706;">10.4d</span></div>
+            </div>
+            <div class="month-card" style="border-left:4px solid #059669;">
+              <div class="month-card-title" style="color:#059669;">📅 Mar 21 – Apr 20 <span style="font-size:0.6rem;background:#DCFCE7;color:#15803D;padding:2px 6px;border-radius:10px;margin-left:4px;">Current</span></div>
+              <div class="month-stat"><span>Tickets Received</span><span class="month-stat-val">74</span></div>
+              <div class="month-stat"><span>Resolved</span><span class="month-stat-val" style="color:#059669;">40</span></div>
+              <div class="month-stat"><span>Still Open</span><span class="month-stat-val" style="color:#DC2626;">34</span></div>
+              <div class="month-stat"><span>Resolution Rate</span><span class="month-stat-val">54%</span></div>
+              <div class="month-stat"><span>Avg Resolution Time</span><span class="month-stat-val" style="color:#059669;">6.5d</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2-col: Weekly Volume + Request Type Shift -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;">
+
+        <!-- Weekly Volume Chart -->
+        <div class="qoq-panel">
+          <div class="qoq-panel-title">Weekly Ticket Volume (W04 – W16)</div>
+          <div class="bar-chart" style="padding:12px 16px 8px;">
+            <div class="bar-row"><div class="bar-label">W04 Jan 19</div><div class="bar-track"><div class="bar-fill" style="width:56%;background:#1D4ED8;">14</div></div><div class="bar-count">14</div></div>
+            <div class="bar-row"><div class="bar-label">W05 Jan 26</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:#1D4ED8;">18</div></div><div class="bar-count">18</div></div>
+            <div class="bar-row"><div class="bar-label">W06 Feb 02</div><div class="bar-track"><div class="bar-fill" style="width:28%;background:#60A5FA;">7</div></div><div class="bar-count">7</div></div>
+            <div class="bar-row"><div class="bar-label">W07 Feb 09</div><div class="bar-track"><div class="bar-fill" style="width:96%;background:#1D4ED8;">24</div></div><div class="bar-count">24</div></div>
+            <div class="bar-row"><div class="bar-label">W08 Feb 16</div><div class="bar-track"><div class="bar-fill" style="width:56%;background:#1D4ED8;">14</div></div><div class="bar-count">14</div></div>
+            <div class="bar-row"><div class="bar-label">W09 Feb 23</div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#7C3AED;">23</div></div><div class="bar-count">23</div></div>
+            <div class="bar-row"><div class="bar-label">W10 Mar 02</div><div class="bar-track"><div class="bar-fill" style="width:36%;background:#60A5FA;">9</div></div><div class="bar-count">9</div></div>
+            <div class="bar-row"><div class="bar-label">W11 Mar 09</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#DC2626;">25</div></div><div class="bar-count">25</div></div>
+            <div class="bar-row"><div class="bar-label">W12 Mar 16</div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#7C3AED;">23</div></div><div class="bar-count">23</div></div>
+            <div class="bar-row"><div class="bar-label">W13 Mar 23</div><div class="bar-track"><div class="bar-fill" style="width:76%;background:#7C3AED;">19</div></div><div class="bar-count">19</div></div>
+            <div class="bar-row"><div class="bar-label">W14 Mar 30</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#0891B2;">15</div></div><div class="bar-count">15</div></div>
+            <div class="bar-row"><div class="bar-label">W15 Apr 06</div><div class="bar-track"><div class="bar-fill" style="width:84%;background:#0891B2;">21</div></div><div class="bar-count">21</div></div>
+            <div class="bar-row"><div class="bar-label">W16 Apr 13</div><div class="bar-track"><div class="bar-fill" style="width:76%;background:#059669;">19</div></div><div class="bar-count" style="color:#059669;">19</div></div>
+          </div>
+        </div>
+
+        <!-- Request Type Shift Q4 → Q1 -->
+        <div class="qoq-panel">
+          <div class="qoq-panel-title">Request Type Shift — Q4 → Q1</div>
+          <div class="rt-compare">
+            <div class="rt-col">
+              <div class="rt-col-title" style="color:#64748B;">📦 Q4 2025 (Dec–Feb)</div>
+              <div class="rt-bar-row"><div class="rt-bar-label">Demo Infrastructure</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:93%;background:#1D4ED8;">79</div></div><div class="rt-bar-pct">93%</div></div>
+              <div class="rt-bar-row"><div class="rt-bar-label">New Cloud Resource</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:4%;background:#0891B2;">3</div></div><div class="rt-bar-pct">4%</div></div>
+              <div class="rt-bar-row"><div class="rt-bar-label">New App Request</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:2%;background:#7C3AED;">2</div></div><div class="rt-bar-pct">2%</div></div>
+              <div class="rt-bar-row"><div class="rt-bar-label">Other</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:1%;background:#94A3B8;">1</div></div><div class="rt-bar-pct">1%</div></div>
+            </div>
+            <div class="rt-col">
+              <div class="rt-col-title" style="color:#1D4ED8;">📦 Q1 2026 (Mar–Apr)</div>
+              <div class="rt-bar-row"><div class="rt-bar-label">Demo Infrastructure</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:88%;background:#1D4ED8;">84</div></div><div class="rt-bar-pct">88%</div></div>
+              <div class="rt-bar-row"><div class="rt-bar-label">New App Request</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:9%;background:#7C3AED;">9</div></div><div class="rt-bar-pct" style="color:#7C3AED;font-weight:800;">9% ↑</div></div>
+              <div class="rt-bar-row"><div class="rt-bar-label">New Cloud Resource</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:3%;background:#0891B2;">3</div></div><div class="rt-bar-pct">3%</div></div>
+              <div class="rt-bar-row"><div class="rt-bar-label">Other</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:0%;background:#94A3B8;"></div></div><div class="rt-bar-pct">0%</div></div>
+              <div style="margin-top:10px;background:#F5F3FF;border:1px solid #DDD6FE;border-radius:6px;padding:6px 8px;font-size:0.63rem;color:#5B21B6;font-weight:600;">💡 New App Requests grew from 2% → 9% — watch this trend</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Performance Table -->
+      <div class="qoq-panel">
+        <div class="qoq-panel-title">Team Performance — Last 90 Days (Jan 21 – Apr 20)</div>
+        <table class="q-team-table">
+          <thead>
+            <tr>
+              <th style="width:200px;">Team Member</th>
+              <th>Tickets Assigned</th>
+              <th>Resolved</th>
+              <th>Open</th>
+              <th>Resolution Rate</th>
+              <th>Avg Resolution Time</th>
+              <th>Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="user-cell"><div class="avatar" style="background:#7C3AED;width:26px;height:26px;font-size:0.6rem;">ID</div><span style="font-weight:600;color:#1E293B;">Isha Dewal</span></div></td>
+              <td style="font-weight:700;color:#1E293B;">79</td><td style="font-weight:700;color:#059669;">56</td><td style="font-weight:700;color:#DC2626;">23</td>
+              <td><span style="font-weight:700;">71%</span><div class="rate-bar"><div class="rate-bar-fill" style="width:71%;background:#059669;"></div></div></td>
+              <td><span class="ri-pill mid">10.6d</span></td>
+              <td style="font-size:0.7rem;color:#059669;font-weight:700;">↑ Improving</td>
+            </tr>
+            <tr>
+              <td><div class="user-cell"><div class="avatar" style="background:#1D4ED8;width:26px;height:26px;font-size:0.6rem;">SK</div><span style="font-weight:600;color:#1E293B;">Swaraj Kumar</span></div></td>
+              <td style="font-weight:700;color:#1E293B;">70</td><td style="font-weight:700;color:#059669;">51</td><td style="font-weight:700;color:#DC2626;">19</td>
+              <td><span style="font-weight:700;">73%</span><div class="rate-bar"><div class="rate-bar-fill" style="width:73%;background:#059669;"></div></div></td>
+              <td><span class="ri-pill mid">11.9d</span></td>
+              <td style="font-size:0.7rem;color:#059669;font-weight:700;">↑ Improving</td>
+            </tr>
+            <tr>
+              <td><div class="user-cell"><div class="avatar" style="background:#D97706;width:26px;height:26px;font-size:0.6rem;">FO</div><span style="font-weight:600;color:#1E293B;">Federico Oro</span></div></td>
+              <td style="font-weight:700;color:#1E293B;">37</td><td style="font-weight:700;color:#059669;">25</td><td style="font-weight:700;color:#DC2626;">12</td>
+              <td><span style="font-weight:700;">68%</span><div class="rate-bar"><div class="rate-bar-fill" style="width:68%;background:#D97706;"></div></div></td>
+              <td><span class="ri-pill mid">10.1d</span></td>
+              <td style="font-size:0.7rem;color:#DC2626;font-weight:700;">⚠ 5 open stalled</td>
+            </tr>
+            <tr>
+              <td><div class="user-cell"><div class="avatar" style="background:#0891B2;width:26px;height:26px;font-size:0.6rem;">KD</div><span style="font-weight:600;color:#1E293B;">Khambat Dagha</span></div></td>
+              <td style="font-weight:700;color:#1E293B;">6</td><td style="font-weight:700;color:#059669;">6</td><td style="font-weight:700;color:#94A3B8;">0</td>
+              <td><span style="font-weight:700;color:#059669;">100%</span><div class="rate-bar"><div class="rate-bar-fill" style="width:100%;background:#059669;"></div></div></td>
+              <td><span class="ri-pill fast">4.7d</span></td>
+              <td style="font-size:0.7rem;color:#059669;font-weight:700;">✓ 100% cleared</td>
+            </tr>
+            <tr>
+              <td><div class="user-cell"><div class="avatar" style="background:#DC2626;width:26px;height:26px;font-size:0.6rem;">SA</div><span style="font-weight:600;color:#1E293B;">Sherwin Antony</span></div></td>
+              <td style="font-weight:700;color:#1E293B;">4</td><td style="font-weight:700;color:#059669;">4</td><td style="font-weight:700;color:#94A3B8;">0</td>
+              <td><span style="font-weight:700;color:#059669;">100%</span><div class="rate-bar"><div class="rate-bar-fill" style="width:100%;background:#059669;"></div></div></td>
+              <td><span class="ri-pill slow">20.1d</span></td>
+              <td style="font-size:0.7rem;color:#059669;font-weight:700;">✓ 100% cleared</td>
+            </tr>
+            <tr>
+              <td><div class="user-cell"><div class="avatar" style="background:#BE185D;width:26px;height:26px;font-size:0.6rem;">MJ</div><span style="font-weight:600;color:#1E293B;">Matias Juan</span></div></td>
+              <td style="font-weight:700;color:#1E293B;">4</td><td style="font-weight:700;color:#059669;">2</td><td style="font-weight:700;color:#DC2626;">2</td>
+              <td><span style="font-weight:700;color:#D97706;">50%</span><div class="rate-bar"><div class="rate-bar-fill" style="width:50%;background:#D97706;"></div></div></td>
+              <td><span class="ri-pill fast">1.2d</span></td>
+              <td style="font-size:0.7rem;color:#D97706;font-weight:700;">↔ Low volume</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /trends-content -->
+
+    <!-- Trends Footer -->
+    <div class="q-footer" style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="note">Source: Workato Jira · PETFOSUP · Q4 2025: Dec 1–Feb 28 · Q1 2026: Mar 1–Apr 20 (partial) · 90-day window Jan 21–Apr 20 · CS Demo Infra Integrations excluded</div>
+      <div style="font-size:0.7rem;color:#94A3B8;">Generated Apr 21, 2026</div>
+    </div>
+
+  </div><!-- /tab-trends -->
+
+  <!-- REMOVE OLD TABS BELOW - replaced by tab-trends above -->
+  <div id="tab-quarterly-OLD" class="tab-pane">
     <div class="q-content">
-
       <!-- KPI Row -->
       <div class="q-kpi-row">
         <div class="q-kpi">
@@ -1098,10 +1338,10 @@
       <div style="font-size:0.7rem;color:#94A3B8;">Generated Apr 20, 2026</div>
     </div>
 
-  </div><!-- /tab-quarterly -->
+  </div><!-- /tab-quarterly-OLD-end -->
 
-  <!-- ══ QoQ TAB ═══════════════════════════════════════════════════════════ -->
-  <div id="tab-qoq" class="tab-pane">
+  <!-- ══ OLD QoQ TAB (now merged into tab-trends) ══════════════════════ -->
+  <div id="tab-qoq-OLD" class="tab-pane" style="display:none!important;">
     <div class="qoq-content">
 
       <!-- Hero KPIs -->
