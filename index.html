@@ -583,178 +583,129 @@
       </div>
     </div>
 
-    <!-- Per-User Resolution Time — Combined Card Layout -->
+    <!-- Per-User Resolution Time — Fully Combined Cards -->
     <div class="panel" style="margin-bottom:20px;">
-      <div class="panel-title">How Fast Did Each Person Close Tickets? — Mon 13 Apr – Sun 19 Apr 2026 <span class="info-icon">i<span class="tooltip">Each card shows all tickets closed by that person this week — new tickets they handled quickly (green) and old backlog they cleared (amber).</span></span></div>
+      <div class="panel-title">Tickets Closed This Week — Mon 13 Apr – Sun 19 Apr 2026 <span class="info-icon">i<span class="tooltip">Total tickets each person closed this week, regardless of when they were raised. Includes both new and old tickets.</span></span></div>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:16px 20px 10px;">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:16px 20px 20px;">
 
-        <!-- Swaraj Kumar — 5 fresh + 8 old -->
-        <div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:14px;padding:16px 14px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-            <div class="avatar" style="background:#1D4ED8;width:38px;height:38px;font-size:0.72rem;flex-shrink:0;">SK</div>
-            <div>
-              <div style="font-weight:700;color:#1E293B;font-size:0.85rem;">Swaraj Kumar</div>
-              <div style="font-size:0.62rem;color:#94A3B8;">13 tickets closed this week</div>
+        <!-- Swaraj Kumar — 13 total -->
+        <div style="background:#F8FAFC;border:1.5px solid #BFDBFE;border-radius:14px;padding:16px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;">
+            <div class="avatar" style="background:#1D4ED8;width:40px;height:40px;font-size:0.72rem;">SK</div>
+          </div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.82rem;margin-bottom:4px;">Swaraj Kumar</div>
+          <div style="background:#DBEAFE;color:#1D4ED8;font-size:2rem;font-weight:800;border-radius:10px;padding:6px 0;margin:8px 0 4px;">13</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:12px;">tickets closed</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.55rem;color:#94A3B8;">⚡ Fastest</div>
+              <div style="font-size:0.78rem;font-weight:700;color:#059669;">24m</div>
+            </div>
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.55rem;color:#94A3B8;">🐢 Slowest</div>
+              <div style="font-size:0.78rem;font-weight:700;color:#DC2626;">48.3d</div>
             </div>
           </div>
-          <!-- Fresh -->
-          <div style="background:#F0FDF4;border-radius:10px;padding:10px 12px;margin-bottom:8px;">
-            <div style="font-size:0.6rem;font-weight:700;color:#065F46;margin-bottom:7px;">🟢 FRESH &nbsp;·&nbsp; 5 new tickets <span class="info-icon" style="font-size:0.48rem;width:9px;height:9px;line-height:9px;background:#059669;">i<span class="tooltip">New tickets raised and fully closed this week</span></span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;text-align:center;">
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">Avg time</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#059669;">1.1d</div>
-              </div>
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">⚡ Fastest</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#059669;">24m</div>
-              </div>
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">🐢 Slowest</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#0369A1;">2.2d</div>
-              </div>
-            </div>
-          </div>
-          <!-- Old -->
-          <div style="background:#FFF7ED;border-radius:10px;padding:10px 12px;">
-            <div style="font-size:0.6rem;font-weight:700;color:#92400E;margin-bottom:7px;">📂 BACKLOG &nbsp;·&nbsp; 8 old tickets <span class="info-icon" style="font-size:0.48rem;width:9px;height:9px;line-height:9px;background:#D97706;">i<span class="tooltip">Old tickets raised in previous weeks, finally closed this week</span></span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;text-align:center;">
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">Avg wait</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#D97706;">25.6d</div>
-              </div>
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">Longest wait</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#DC2626;">48.3d</div>
-              </div>
-            </div>
+          <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+            <div style="font-size:0.55rem;color:#94A3B8;">Avg close time</div>
+            <div style="font-size:0.78rem;font-weight:700;color:#1D4ED8;">16.2d</div>
           </div>
         </div>
 
-        <!-- Isha Dewal — 3 fresh + 6 old -->
-        <div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:14px;padding:16px 14px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-            <div class="avatar" style="background:#7C3AED;width:38px;height:38px;font-size:0.72rem;flex-shrink:0;">ID</div>
-            <div>
-              <div style="font-weight:700;color:#1E293B;font-size:0.85rem;">Isha Dewal</div>
-              <div style="font-size:0.62rem;color:#94A3B8;">9 tickets closed this week</div>
+        <!-- Isha Dewal — 9 total -->
+        <div style="background:#F8FAFC;border:1.5px solid #DDD6FE;border-radius:14px;padding:16px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;">
+            <div class="avatar" style="background:#7C3AED;width:40px;height:40px;font-size:0.72rem;">ID</div>
+          </div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.82rem;margin-bottom:4px;">Isha Dewal</div>
+          <div style="background:#EDE9FE;color:#7C3AED;font-size:2rem;font-weight:800;border-radius:10px;padding:6px 0;margin:8px 0 4px;">9</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:12px;">tickets closed</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.55rem;color:#94A3B8;">⚡ Fastest</div>
+              <div style="font-size:0.78rem;font-weight:700;color:#059669;">5.5h</div>
+            </div>
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.55rem;color:#94A3B8;">🐢 Slowest</div>
+              <div style="font-size:0.78rem;font-weight:700;color:#DC2626;">139.9d</div>
             </div>
           </div>
-          <!-- Fresh -->
-          <div style="background:#F0FDF4;border-radius:10px;padding:10px 12px;margin-bottom:8px;">
-            <div style="font-size:0.6rem;font-weight:700;color:#065F46;margin-bottom:7px;">🟢 FRESH &nbsp;·&nbsp; 3 new tickets <span class="info-icon" style="font-size:0.48rem;width:9px;height:9px;line-height:9px;background:#059669;">i<span class="tooltip">New tickets raised and fully closed this week</span></span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;text-align:center;">
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">Avg time</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#059669;">0.7d</div>
-              </div>
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">⚡ Fastest</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#059669;">5.5h</div>
-              </div>
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">🐢 Slowest</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#0369A1;">23.8h</div>
-              </div>
-            </div>
-          </div>
-          <!-- Old -->
-          <div style="background:#FFF7ED;border-radius:10px;padding:10px 12px;">
-            <div style="font-size:0.6rem;font-weight:700;color:#92400E;margin-bottom:7px;">📂 BACKLOG &nbsp;·&nbsp; 6 old tickets <span class="info-icon" style="font-size:0.48rem;width:9px;height:9px;line-height:9px;background:#D97706;">i<span class="tooltip">Old tickets raised in previous weeks, finally closed this week</span></span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;text-align:center;">
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">Avg wait</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#D97706;">~52d</div>
-              </div>
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">Longest wait</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#DC2626;">139.9d</div>
-              </div>
-            </div>
+          <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+            <div style="font-size:0.55rem;color:#94A3B8;">Avg close time</div>
+            <div style="font-size:0.78rem;font-weight:700;color:#7C3AED;">34.9d</div>
           </div>
         </div>
 
-        <!-- Federico Oro — 1 fresh only -->
-        <div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:14px;padding:16px 14px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-            <div class="avatar" style="background:#D97706;width:38px;height:38px;font-size:0.72rem;flex-shrink:0;">FO</div>
-            <div>
-              <div style="font-weight:700;color:#1E293B;font-size:0.85rem;">Federico Oro</div>
-              <div style="font-size:0.62rem;color:#94A3B8;">1 ticket closed this week</div>
+        <!-- Federico Oro — 1 total -->
+        <div style="background:#F8FAFC;border:1.5px solid #FDE68A;border-radius:14px;padding:16px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;">
+            <div class="avatar" style="background:#D97706;width:40px;height:40px;font-size:0.72rem;">FO</div>
+          </div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.82rem;margin-bottom:4px;">Federico Oro</div>
+          <div style="background:#FEF3C7;color:#D97706;font-size:2rem;font-weight:800;border-radius:10px;padding:6px 0;margin:8px 0 4px;">1</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:12px;">ticket closed</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.55rem;color:#94A3B8;">⚡ Fastest</div>
+              <div style="font-size:0.78rem;font-weight:700;color:#059669;">19m</div>
+            </div>
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.55rem;color:#94A3B8;">🐢 Slowest</div>
+              <div style="font-size:0.78rem;font-weight:700;color:#059669;">19m</div>
             </div>
           </div>
-          <!-- Fresh -->
-          <div style="background:#F0FDF4;border-radius:10px;padding:10px 12px;">
-            <div style="font-size:0.6rem;font-weight:700;color:#065F46;margin-bottom:7px;">🟢 FRESH &nbsp;·&nbsp; 1 new ticket <span class="info-icon" style="font-size:0.48rem;width:9px;height:9px;line-height:9px;background:#059669;">i<span class="tooltip">New ticket raised and fully closed this week</span></span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;text-align:center;">
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">Avg time</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#059669;">19m</div>
-              </div>
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">⚡ Fastest</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#059669;">19m</div>
-              </div>
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">🐢 Slowest</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#059669;">19m</div>
-              </div>
-            </div>
+          <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+            <div style="font-size:0.55rem;color:#94A3B8;">Avg close time</div>
+            <div style="font-size:0.78rem;font-weight:700;color:#D97706;">19m</div>
           </div>
         </div>
 
-      </div>
-
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:0 20px 20px;">
-
-        <!-- Sherwin Antony — 2 old only -->
-        <div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:14px;padding:16px 14px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-            <div class="avatar" style="background:#DC2626;width:38px;height:38px;font-size:0.72rem;flex-shrink:0;">SA</div>
-            <div>
-              <div style="font-weight:700;color:#1E293B;font-size:0.85rem;">Sherwin Antony</div>
-              <div style="font-size:0.62rem;color:#94A3B8;">2 tickets closed this week</div>
+        <!-- Sherwin Antony — 2 total -->
+        <div style="background:#F8FAFC;border:1.5px solid #FECACA;border-radius:14px;padding:16px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;">
+            <div class="avatar" style="background:#DC2626;width:40px;height:40px;font-size:0.72rem;">SA</div>
+          </div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.82rem;margin-bottom:4px;">Sherwin Antony</div>
+          <div style="background:#FEE2E2;color:#DC2626;font-size:2rem;font-weight:800;border-radius:10px;padding:6px 0;margin:8px 0 4px;">2</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:12px;">tickets closed</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.55rem;color:#94A3B8;">⚡ Fastest</div>
+              <div style="font-size:0.78rem;font-weight:700;color:#059669;">65d</div>
+            </div>
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.55rem;color:#94A3B8;">🐢 Slowest</div>
+              <div style="font-size:0.78rem;font-weight:700;color:#DC2626;">145d</div>
             </div>
           </div>
-          <!-- Old only -->
-          <div style="background:#FFF7ED;border-radius:10px;padding:10px 12px;">
-            <div style="font-size:0.6rem;font-weight:700;color:#92400E;margin-bottom:7px;">📂 BACKLOG &nbsp;·&nbsp; 2 old tickets <span class="info-icon" style="font-size:0.48rem;width:9px;height:9px;line-height:9px;background:#D97706;">i<span class="tooltip">Old tickets raised in previous weeks, finally closed this week</span></span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;text-align:center;">
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">Avg wait</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#D97706;">105d</div>
-              </div>
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">Longest wait</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#DC2626;">145d</div>
-              </div>
-            </div>
+          <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+            <div style="font-size:0.55rem;color:#94A3B8;">Avg close time</div>
+            <div style="font-size:0.78rem;font-weight:700;color:#DC2626;">105d</div>
           </div>
         </div>
 
-        <!-- Khambat Dagha — 1 old only -->
-        <div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:14px;padding:16px 14px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-            <div class="avatar" style="background:#0891B2;width:38px;height:38px;font-size:0.72rem;flex-shrink:0;">KD</div>
-            <div>
-              <div style="font-weight:700;color:#1E293B;font-size:0.85rem;">Khambat Dagha</div>
-              <div style="font-size:0.62rem;color:#94A3B8;">1 ticket closed this week</div>
+        <!-- Khambat Dagha — 1 total -->
+        <div style="background:#F8FAFC;border:1.5px solid #BAE6FD;border-radius:14px;padding:16px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;">
+            <div class="avatar" style="background:#0891B2;width:40px;height:40px;font-size:0.72rem;">KD</div>
+          </div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.82rem;margin-bottom:4px;">Khambat Dagha</div>
+          <div style="background:#E0F2FE;color:#0891B2;font-size:2rem;font-weight:800;border-radius:10px;padding:6px 0;margin:8px 0 4px;">1</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:12px;">ticket closed</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.55rem;color:#94A3B8;">⚡ Fastest</div>
+              <div style="font-size:0.78rem;font-weight:700;color:#D97706;">31d</div>
+            </div>
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+              <div style="font-size:0.55rem;color:#94A3B8;">🐢 Slowest</div>
+              <div style="font-size:0.78rem;font-weight:700;color:#D97706;">31d</div>
             </div>
           </div>
-          <!-- Old only -->
-          <div style="background:#FFF7ED;border-radius:10px;padding:10px 12px;">
-            <div style="font-size:0.6rem;font-weight:700;color:#92400E;margin-bottom:7px;">📂 BACKLOG &nbsp;·&nbsp; 1 old ticket <span class="info-icon" style="font-size:0.48rem;width:9px;height:9px;line-height:9px;background:#D97706;">i<span class="tooltip">Old ticket raised in a previous week, finally closed this week</span></span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;text-align:center;">
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">Avg wait</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#D97706;">31.0d</div>
-              </div>
-              <div style="background:#fff;border-radius:7px;padding:5px 3px;">
-                <div style="font-size:0.55rem;color:#64748B;">Longest wait</div>
-                <div style="font-size:0.8rem;font-weight:700;color:#DC2626;">31.0d</div>
-              </div>
-            </div>
+          <div style="background:#fff;border-radius:8px;padding:6px 4px;">
+            <div style="font-size:0.55rem;color:#94A3B8;">Avg close time</div>
+            <div style="font-size:0.78rem;font-weight:700;color:#0891B2;">31d</div>
           </div>
         </div>
 
