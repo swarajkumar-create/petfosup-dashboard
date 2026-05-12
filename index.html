@@ -480,11 +480,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
     <script>
     (function() {
-      const labels = ['W16
-Apr 13–19', 'W17
-Apr 20–26', 'W18
-Apr 27–May 3', 'W19
-May 4–10'];
+      const labels = [['W16','Apr 13–19'],['W17','Apr 20–26'],['W18','Apr 27–May 3'],['W19','May 4–10']];
       const created  = [24, 18, 13, 8];
       const resolved = [26, 25, 15, 20];
       const medianDays = [0.83, 0.60, null, null];
@@ -501,7 +497,7 @@ May 4–10'];
           plugins: {
             legend: { position: 'top', labels: { font: { size: 10 }, color: '#334155', padding: 10, boxWidth: 12 } },
             tooltip: { callbacks: {
-              title: (items) => items[0].label.replace('\n', ' '),
+              title: (items) => Array.isArray(items[0].label) ? items[0].label.join(' ') : items[0].label.replace('\n', ' '),
               afterBody: (items) => { const c = items.find(i=>i.dataset.label==='Created')?.raw||0; const r = items.find(i=>i.dataset.label==='Resolved')?.raw||0; return r>c?[`  ✅ Net: +${r-c} more resolved`]:[`  ⚠️ Net: ${r-c} deficit`]; }
             }}
           },
@@ -533,7 +529,7 @@ May 4–10'];
           plugins: {
             legend: { display: false },
             tooltip: { callbacks: {
-              title: (items) => items[0].label.replace('\n', ' '),
+              title: (items) => Array.isArray(items[0].label) ? items[0].label.join(' ') : items[0].label.replace('\n', ' '),
               label: (item) => ` Median: ${item.raw.toFixed(2)} days`,
               afterLabel: (item) => { if(item.dataIndex===0) return '  (baseline)'; const prev=medianDays[item.dataIndex-1]; const pct=Math.round(((prev-item.raw)/prev)*100); return pct>0?`  ↓ ${pct}% faster than prev week`:`  ↑ ${Math.abs(pct)}% slower`; }
             }}
