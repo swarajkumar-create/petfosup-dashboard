@@ -1,279 +1,937 @@
-<!DOCTYPE html>
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Petfosup Weekly Dashboard",
+  "schemaVersion": 1,
+  "description": "PETFOSUP weekly snapshot. W22 (May 25–31): 13 created, 12 resolved. Per-person breakdown, WoW trend and quarterly history.",
+  "mcpTools": [
+    "mcp__08dfeeca-52bc-4bf9-9dd1-ea3f1dca49b2__searchJiraIssuesUsingJql"
+  ],
+  "mcpServerNames": [
+    "Atlassian"
+  ]
+}
+</script>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PETFOSUP Weekly Dashboard</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<meta name="color-scheme" content="light">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PETFOSUP Weekly Summary</title>
 <style>
-  :root { color-scheme: light; }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f7fa; color: #1a1a2e; }
+  /* Poppins removed — system font used */
 
-  .header {
-    background: linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 100%);
-    color: white;
-    padding: 20px 24px;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #67EADD;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
   }
-  .header h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
-  .header .meta { font-size: 12px; opacity: 0.8; margin-top: 2px; }
-  .badge {
-    background: rgba(255,255,255,0.2);
-    padding: 4px 12px;
+
+  .slide {
+    width: 1100px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  }
+
+  .top-bar {
+    background: linear-gradient(135deg, #1E3A5F 0%, #1D4ED8 100%);
+    padding: 22px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: none;
+  }
+  .top-bar .left { display: flex; align-items: center; gap: 14px; }
+  .top-bar .logo-box {
+    width: 40px; height: 40px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .top-bar .title { color: #FFFFFF; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.3px; }
+  .top-bar .sub { color: rgba(255,255,255,0.7); font-size: 0.78rem; margin-top: 2px; }
+  .top-bar .date-badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #FFFFFF;
+    padding: 6px 16px;
     border-radius: 20px;
-    font-size: 13px;
+    font-size: 0.8rem;
     font-weight: 600;
   }
 
-  .kpi-grid {
+  .content { padding: 28px 36px 26px; background: #F8FAFC; }
+
+  .kpi-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    padding: 20px 24px 0;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
   }
-  .kpi-card {
-    background: white;
+  .kpi {
+    background: #fff;
     border-radius: 10px;
     padding: 16px 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    border-left: 4px solid #2d6a9f;
+    border: 1px solid #E2E8F0;
+    position: relative;
+    overflow: hidden;
   }
-  .kpi-card.green { border-left-color: #22c55e; }
-  .kpi-card.amber { border-left-color: #f59e0b; }
-  .kpi-card.red { border-left-color: #ef4444; }
-  .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: #6b7280; font-weight: 600; }
-  .kpi-value { font-size: 36px; font-weight: 800; color: #1a1a2e; line-height: 1.1; margin-top: 4px; }
-  .kpi-sub { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+  .kpi::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    border-radius: 10px 0 0 10px;
+  }
+  .kpi.blue::after   { background: #3B82F6; }
+  .kpi.green::after  { background: #10B981; }
+  .kpi.amber::after  { background: #F59E0B; }
+  .kpi.purple::after { background: #8B5CF6; }
+  .kpi.red::after    { background: #EF4444; }
+  .kpi-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #94A3B8; }
+  .kpi-value { font-size: 2.2rem; font-weight: 800; line-height: 1.05; margin-top: 4px; }
+  .kpi.blue .kpi-value   { color: #1D4ED8; }
+  .kpi.green .kpi-value  { color: #10B981; }
+  .kpi.amber .kpi-value  { color: #F59E0B; }
+  .kpi.purple .kpi-value { color: #8B5CF6; }
+  .kpi.red .kpi-value    { color: #EF4444; }
+  .kpi-note { font-size: 0.72rem; color: #94A3B8; margin-top: 3px; }
 
-  .content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    padding: 16px 24px 24px;
-  }
-  .card {
-    background: white;
+  .panel {
+    background: #fff;
+    border: 1px solid #E2E8F0;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    padding: 0;
+    overflow: hidden;
   }
-  .card.full { grid-column: 1 / -1; }
-  .card h2 { font-size: 14px; font-weight: 700; color: #374151; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .panel-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1D4ED8;
+    padding: 14px 24px;
+    border-bottom: 1px solid #E2E8F0;
+    background: #F8FAFC;
+    border-left: 3px solid #3B82F6;
+  }
 
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { text-align: left; padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #f3f4f6; }
-  td { padding: 10px 12px; border-bottom: 1px solid #f3f4f6; color: #374151; }
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { background: #F8FAFC; }
+  th {
+    padding: 10px 18px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #94A3B8;
+    text-align: left;
+    border-bottom: 1px solid #E2E8F0;
+  }
+  th.num { text-align: center; }
+  td {
+    padding: 13px 18px;
+    font-size: 0.875rem;
+    border-bottom: 1px solid #F1F5F9;
+    vertical-align: middle;
+  }
   tr:last-child td { border-bottom: none; }
-  tr:hover td { background: #f9fafb; }
+  td.num { text-align: center; }
 
-  .bar-wrap { display: flex; align-items: center; gap: 8px; }
-  .bar-bg { flex: 1; background: #f3f4f6; border-radius: 4px; height: 8px; overflow: hidden; }
-  .bar-fill { height: 8px; border-radius: 4px; background: linear-gradient(90deg, #2d6a9f, #60a5fa); transition: width 0.6s ease; }
-  .bar-num { font-size: 12px; font-weight: 700; color: #374151; min-width: 24px; text-align: right; }
+  .user-cell { display: flex; align-items: center; gap: 12px; }
+  .avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.72rem; font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .user-name { font-weight: 600; color: #1E293B; }
+  .num-val { font-size: 1.05rem; font-weight: 800; }
+  .assigned-val { color: #1D4ED8; }
+  .resolved-val { color: #059669; }
+  .open-val     { color: #DC2626; }
+  .muted-val    { color: #CBD5E1; }
+  .total-res-val { color: #0D9488; }
 
-  .chart-wrap { height: 200px; position: relative; }
+  .ri-pill { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.72rem; font-weight: 700; }
+  .ri-pill.fast { background: #D1FAE5; color: #065F46; }
+  .ri-pill.slow { background: #FEE2E2; color: #991B1B; }
+  .ri-pill.mid  { background: #FEF3C7; color: #92400E; }
 
-  .pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
-  .pill.green { background: #dcfce7; color: #16a34a; }
-  .pill.amber { background: #fef3c7; color: #d97706; }
-  .pill.blue { background: #dbeafe; color: #2563eb; }
+  .rt-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 24px;
+    border-bottom: 1px solid #F1F5F9;
+  }
+  .rt-row:last-child { border-bottom: none; }
+  .rt-label { font-size: 0.825rem; font-weight: 600; color: #1E293B; width: 240px; flex-shrink: 0; }
+  .rt-bar-wrap { flex: 1; background: #F1F5F9; border-radius: 6px; height: 10px; overflow: hidden; }
+  .rt-bar { height: 100%; border-radius: 6px; }
+  .rt-count { font-size: 0.9rem; font-weight: 800; color: #1E293B; width: 36px; text-align: right; flex-shrink: 0; }
+  .rt-pct { font-size: 0.72rem; color: #94A3B8; width: 38px; text-align: right; flex-shrink: 0; }
 
-  .footer { text-align: center; padding: 12px; font-size: 11px; color: #9ca3af; }
+  .info-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 13px; height: 13px; border-radius: 50%;
+    background: #CBD5E1; color: #fff;
+    font-size: 0.55rem; font-weight: 800;
+    cursor: default; position: relative; flex-shrink: 0;
+    font-style: normal;
+  }
+  .info-icon .tooltip { display: none !important; }
+
+  #global-tooltip {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    background: #1E293B;
+    color: #F8FAFC;
+    font-size: 0.7rem;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    text-transform: none;
+    letter-spacing: 0;
+    white-space: normal;
+    max-width: 280px;
+    line-height: 1.4;
+    padding: 7px 11px;
+    border-radius: 7px;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    pointer-events: none;
+  }
+  #global-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%; left: 50%; transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #1E293B;
+  }
+
+  .footer { background: #F1F5F9; border-top: 1px solid #E2E8F0; padding: 10px 36px; }
+  .footer .note { font-size: 0.7rem; color: #94A3B8; }
+
+  .tab-nav { display: flex; gap: 0; background: #FFFFFF; border-bottom: 2px solid #E2E8F0; }
+  .tab-btn {
+    padding: 10px 28px;
+    background: transparent; border: none;
+    color: #64748B;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    cursor: pointer; transition: all 0.18s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: #1D4ED8; background: #F8FAFC; }
+  .tab-btn.active { color: #1D4ED8; border-bottom-color: #1D4ED8; background: #F8FAFC; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  .q-footer { background: #F1F5F9; border-top: 1px solid #E2E8F0; padding: 10px 36px; }
+  .q-footer .note { font-size: 0.7rem; color: #94A3B8; }
+
+  .qoq-content { padding: 20px 36px; }
+  .qoq-hero { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px; }
+  .qoq-hero-card { border-radius:12px; padding:18px 20px; text-align:center; }
+  .qoq-hero-label { font-size:0.63rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; opacity:0.75; margin-bottom:6px; }
+  .qoq-hero-q4 { font-size:1rem; font-weight:700; opacity:0.7; margin-bottom:2px; }
+  .qoq-hero-q1 { font-size:1.6rem; font-weight:800; line-height:1; margin-bottom:4px; }
+  .qoq-hero-delta { font-size:0.75rem; font-weight:700; }
+  .qoq-panel { background:#fff; border:1px solid #E2E8F0; border-radius:12px; margin-bottom:18px; overflow:hidden; }
+  .qoq-panel-title { padding:12px 20px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:#1D4ED8; background:#F8FAFC; border-bottom:1px solid #E2E8F0; border-left:3px solid #3B82F6; display:flex; align-items:center; gap:10px; }
+  .qoq-legend { display:flex; gap:16px; margin-left:auto; }
+  .qoq-legend-item { display:flex; align-items:center; gap:5px; font-size:0.65rem; font-weight:600; }
+  .qoq-legend-dot { width:10px; height:10px; border-radius:3px; }
+
+  .dual-bar-chart { padding:16px 20px; }
+  .dual-bar-row { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+  .dual-bar-person { width:110px; font-size:0.7rem; font-weight:600; color:#475569; flex-shrink:0; }
+  .dual-bars { flex:1; display:flex; flex-direction:column; gap:4px; }
+  .dual-bar-track { height:16px; background:#F1F5F9; border-radius:4px; overflow:hidden; }
+  .dual-bar-fill { height:100%; border-radius:4px; display:flex; align-items:center; padding-left:6px; font-size:0.62rem; font-weight:700; color:#fff; white-space:nowrap; }
+  .dual-bar-meta { width:70px; font-size:0.65rem; font-weight:700; flex-shrink:0; text-align:right; }
+
+  .month-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; padding: 16px 20px; }
+  .month-card { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px 16px; }
+  .month-card-title { font-size: 0.7rem; font-weight: 700; color: #1E293B; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #E2E8F0; }
+  .month-stat { display: flex; justify-content: space-between; align-items: center; padding: 3px 0; font-size: 0.75rem; color: #475569; }
+  .month-stat-val { font-weight: 700; color: #1E293B; }
+
+  .bar-chart { padding: 16px 20px; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .bar-label { width: 80px; font-size: 0.68rem; font-weight: 600; color: #475569; text-align: right; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 20px; background: #F1F5F9; border-radius: 4px; overflow: hidden; display: flex; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 6px; font-size: 0.62rem; font-weight: 700; color: #fff; white-space: nowrap; }
+  .bar-count { font-size: 0.68rem; font-weight: 700; color: #64748B; width: 24px; flex-shrink: 0; text-align: right; }
+
+  .q-team-table { width: 100%; border-collapse: collapse; }
+  .q-team-table th { padding: 8px 14px; font-size: 0.63rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #94A3B8; background: #F8FAFC; text-align: center; border-bottom: 1px solid #F1F5F9; }
+  .q-team-table th:first-child { text-align: left; }
+  .q-team-table td { padding: 10px 14px; font-size: 0.78rem; border-bottom: 1px solid #F8FAFC; text-align: center; vertical-align: middle; }
+  .q-team-table td:first-child { text-align: left; }
+  .q-team-table tr:last-child td { border-bottom: none; }
+  .rate-bar { height: 6px; border-radius: 3px; background: #E2E8F0; overflow: hidden; margin-top: 3px; }
+  .rate-bar-fill { height: 100%; border-radius: 3px; }
+
+  .rt-bar-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .rt-bar-label { width:130px; font-size:0.65rem; color:#475569; flex-shrink:0; }
+  .rt-bar-track { flex:1; height:14px; background:#F1F5F9; border-radius:3px; overflow:hidden; }
+  .rt-bar-fill { height:100%; border-radius:3px; display:flex; align-items:center; padding-left:5px; font-size:0.58rem; font-weight:700; color:#fff; }
+  .rt-bar-pct { font-size:0.62rem; font-weight:700; color:#64748B; width:30px; text-align:right; flex-shrink:0; }
 </style>
 </head>
 <body>
+<div class="slide">
 
-<div class="header">
-  <div>
-    <div class="h1" style="font-size:20px;font-weight:700;">PETFOSUP Weekly Dashboard</div>
-    <div class="meta">PE TFO Support Portal · Data from Jira · Excludes CS Demo Infra</div>
-  </div>
-  <div class="badge">W22 · May 25–31, 2026</div>
-</div>
-
-<div class="kpi-grid">
-  <div class="kpi-card blue">
-    <div class="kpi-label">Created This Week</div>
-    <div class="kpi-value">13</div>
-    <div class="kpi-sub">W22 (May 25–31)</div>
-  </div>
-  <div class="kpi-card green">
-    <div class="kpi-label">Resolved This Week</div>
-    <div class="kpi-value">12</div>
-    <div class="kpi-sub">92% resolution rate</div>
-  </div>
-  <div class="kpi-card amber">
-    <div class="kpi-label">Net New Open</div>
-    <div class="kpi-value">+1</div>
-    <div class="kpi-sub">Created − Resolved</div>
-  </div>
-  <div class="kpi-card">
-    <div class="kpi-label">% Resolved</div>
-    <div class="kpi-value">92%</div>
-    <div class="kpi-sub">12 of 13 closed</div>
-  </div>
-</div>
-
-<div class="content-grid">
-  <div class="card">
-    <h2>Resolved This Week — By Person</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Assignee</th>
-          <th>Resolved</th>
-          <th style="width:120px">Load</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Isha Dewal</td>
-          <td><span class="pill blue">5</span></td>
-          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div><div class="bar-num">5</div></div></td>
-        </tr>
-        <tr>
-          <td>Swaraj Kumar Mohapatro</td>
-          <td><span class="pill blue">4</span></td>
-          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:80%"></div></div><div class="bar-num">4</div></div></td>
-        </tr>
-        <tr>
-          <td>Khambat Dagha</td>
-          <td><span class="pill blue">1</span></td>
-          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:20%"></div></div><div class="bar-num">1</div></div></td>
-        </tr>
-        <tr>
-          <td>Federico Oro</td>
-          <td><span class="pill blue">1</span></td>
-          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:20%"></div></div><div class="bar-num">1</div></div></td>
-        </tr>
-        <tr>
-          <td>Sherwin Antony</td>
-          <td><span class="pill blue">1</span></td>
-          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:20%"></div></div><div class="bar-num">1</div></div></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="top-bar">
+    <div class="left">
+      <div class="logo-box">📋</div>
+      <div>
+        <div class="title">PETFOSUP — Support Dashboard</div>
+        <div class="sub">Project: PETFOSUP &nbsp;·&nbsp; CS Demo Team</div>
+      </div>
+    </div>
+    <div class="date-badge">Jun 1, 2026</div>
   </div>
 
-  <div class="card">
-    <h2>WoW Trend — Created vs Resolved</h2>
-    <div class="chart-wrap">
-      <canvas id="wowChart"></canvas>
+  <div style="background:#F8FFFE;border-bottom:1px solid rgba(103,234,221,0.25);padding:7px 36px;display:flex;align-items:center;gap:8px;font-size:0.72rem;color:#3EA2A8;font-weight:500;">
+    <span style="font-size:0.9rem;">🔄</span>
+    This dashboard refreshes automatically every <strong>Monday at 09:00 GMT</strong>. Data reflects the previous week's activity.
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('weekly')">📅 Weekly Snapshot &nbsp;— W22 May 25–31</button>
+    <button class="tab-btn" onclick="switchTab('trends')">📈 Trends &amp; History &nbsp;— FY27 Q1 vs Q2</button>
+  </div>
+
+  <!-- ══ WEEKLY TAB ══ -->
+  <div id="tab-weekly" class="tab-pane active">
+  <div class="content">
+
+    <div class="kpi-row">
+      <div class="kpi blue">
+        <div class="kpi-label">Total Assigned</div>
+        <div class="kpi-value">13</div>
+        <div class="kpi-note">New tickets this week</div>
+      </div>
+      <div class="kpi green">
+        <div class="kpi-label">Total Resolved</div>
+        <div class="kpi-value">12</div>
+        <div class="kpi-note">Closed May 25–31</div>
+      </div>
+      <div class="kpi amber">
+        <div class="kpi-label">Still Open (This Week)</div>
+        <div class="kpi-value">13</div>
+        <div class="kpi-note">Of this week's new tickets</div>
+      </div>
+      <div class="kpi purple">
+        <div class="kpi-label">Same-Week Close Rate</div>
+        <div class="kpi-value">0%</div>
+        <div class="kpi-note">New tickets closed this week</div>
+      </div>
+      <div class="kpi red">
+        <div class="kpi-label">Total Open Now</div>
+        <div class="kpi-value">85</div>
+        <div class="kpi-note">All unresolved as of today</div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:20px;">
+      <div class="panel-title">New Tickets by Request Type &amp; How Fast They Were Closed — Mon 25 May – Sun 31 May 2026</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+        <div style="padding:14px 20px 16px;border-right:1px solid #E2E8F0;">
+          <div style="font-size:0.68rem;font-weight:700;color:#334155;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">📊 13 Tickets — By Request Type</div>
+          <div class="rt-row"><div class="rt-label">Credentials</div><div class="rt-bar-wrap"><div class="rt-bar" style="width:100%;background:#059669;"></div></div><div class="rt-count">4</div><div class="rt-pct">31%</div></div>
+          <div class="rt-row"><div class="rt-label">Sandbox Related</div><div class="rt-bar-wrap"><div class="rt-bar" style="width:75%;background:#1D4ED8;"></div></div><div class="rt-count">3</div><div class="rt-pct">23%</div></div>
+          <div class="rt-row"><div class="rt-label">New App Request</div><div class="rt-bar-wrap"><div class="rt-bar" style="width:50%;background:#7C3AED;"></div></div><div class="rt-count">2</div><div class="rt-pct">15%</div></div>
+          <div class="rt-row"><div class="rt-label">Azure Related</div><div class="rt-bar-wrap"><div class="rt-bar" style="width:25%;background:#D97706;"></div></div><div class="rt-count">1</div><div class="rt-pct">8%</div></div>
+          <div class="rt-row"><div class="rt-label">Security / Infra</div><div class="rt-bar-wrap"><div class="rt-bar" style="width:25%;background:#DC2626;"></div></div><div class="rt-count">1</div><div class="rt-pct">8%</div></div>
+          <div class="rt-row"><div class="rt-label">Other</div><div class="rt-bar-wrap"><div class="rt-bar" style="width:50%;background:#94A3B8;"></div></div><div class="rt-count">2</div><div class="rt-pct">15%</div></div>
+        </div>
+        <div style="padding:14px 20px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;text-align:center;">
+          <div style="font-size:0.68rem;font-weight:700;color:#334155;text-transform:uppercase;letter-spacing:0.06em;">⚡ Closed This Week <span class="info-icon">i<span class="tooltip">Tickets opened AND closed within this same week</span></span></div>
+          <div style="position:relative;width:120px;height:120px;">
+            <svg viewBox="0 0 36 36" style="width:120px;height:120px;transform:rotate(-90deg);">
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#E2E8F0" stroke-width="3.2"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#059669" stroke-width="3.2" stroke-dasharray="0 100" stroke-linecap="round"/>
+            </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+              <div style="font-size:1.5rem;font-weight:900;color:#94A3B8;line-height:1;">0</div>
+              <div style="font-size:0.65rem;color:#64748B;font-weight:600;">of 13</div>
+            </div>
+          </div>
+          <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:10px 24px;">
+            <div style="font-size:0.62rem;color:#64748B;margin-bottom:2px;">Avg turnaround (all resolved)</div>
+            <div style="font-size:1.4rem;font-weight:800;color:#059669;">9.5d</div>
+          </div>
+          <div style="font-size:0.65rem;color:#94A3B8;line-height:1.5;max-width:220px;">12 resolved this week — all from backlog, 0 same-week closures</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:20px;">
+      <div class="panel-title">Tickets Closed This Week — Mon 25 May – Sun 31 May 2026 <span class="info-icon">i<span class="tooltip">Total tickets each person closed this week, regardless of when they were raised.</span></span></div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:16px 20px 20px;">
+
+        <!-- Isha Dewal: 5 closed -->
+        <div style="background:#F8FAFC;border:1.5px solid #DDD6FE;border-radius:14px;padding:16px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;"><div class="avatar" style="background:#7C3AED;width:40px;height:40px;font-size:0.72rem;">ID</div></div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.82rem;margin-bottom:4px;">Isha Dewal</div>
+          <div style="background:#EDE9FE;color:#7C3AED;font-size:2rem;font-weight:800;border-radius:10px;padding:6px 0;margin:8px 0 4px;">5</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:12px;">tickets closed</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;"><div style="font-size:0.55rem;color:#94A3B8;">⚡ Fastest</div><div style="font-size:0.78rem;font-weight:700;color:#059669;">4.9d</div></div>
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;"><div style="font-size:0.55rem;color:#94A3B8;">🐢 Slowest</div><div style="font-size:0.78rem;font-weight:700;color:#DC2626;">85.0d</div></div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:6px 4px;"><div style="font-size:0.55rem;color:#94A3B8;">Avg close time</div><div style="font-size:0.78rem;font-weight:700;color:#7C3AED;">22.4d</div></div>
+        </div>
+
+        <!-- Swaraj Kumar: 4 closed -->
+        <div style="background:#F8FAFC;border:1.5px solid #BFDBFE;border-radius:14px;padding:16px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;"><div class="avatar" style="background:#1D4ED8;width:40px;height:40px;font-size:0.72rem;">SK</div></div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.82rem;margin-bottom:4px;">Swaraj Kumar</div>
+          <div style="background:#DBEAFE;color:#1D4ED8;font-size:2rem;font-weight:800;border-radius:10px;padding:6px 0;margin:8px 0 4px;">4</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:12px;">tickets closed</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;"><div style="font-size:0.55rem;color:#94A3B8;">⚡ Fastest</div><div style="font-size:0.78rem;font-weight:700;color:#059669;">~1d</div></div>
+            <div style="background:#fff;border-radius:8px;padding:6px 4px;"><div style="font-size:0.55rem;color:#94A3B8;">🐢 Slowest</div><div style="font-size:0.78rem;font-weight:700;color:#D97706;">16d</div></div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:6px 4px;"><div style="font-size:0.55rem;color:#94A3B8;">Avg close time</div><div style="font-size:0.78rem;font-weight:700;color:#1D4ED8;">7.5d</div></div>
+        </div>
+
+        <!-- Khambat Dagha: 1 closed -->
+        <div style="background:#F8FAFC;border:1.5px solid #BAE6FD;border-radius:14px;padding:16px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;"><div class="avatar" style="background:#0891B2;width:40px;height:40px;font-size:0.72rem;">KD</div></div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.82rem;margin-bottom:4px;">Khambat Dagha</div>
+          <div style="background:#E0F2FE;color:#0891B2;font-size:2rem;font-weight:800;border-radius:10px;padding:6px 0;margin:8px 0 4px;">1</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:12px;">tickets closed</div>
+          <div style="background:#F1F5F9;border-radius:8px;padding:6px 4px;"><div style="font-size:0.65rem;color:#94A3B8;">1 ticket this week</div></div>
+        </div>
+
+        <!-- Federico Oro: 1 closed -->
+        <div style="background:#F8FAFC;border:1.5px solid #FDE68A;border-radius:14px;padding:16px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;"><div class="avatar" style="background:#D97706;width:40px;height:40px;font-size:0.72rem;">FO</div></div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.82rem;margin-bottom:4px;">Federico Oro</div>
+          <div style="background:#FEF3C7;color:#D97706;font-size:2rem;font-weight:800;border-radius:10px;padding:6px 0;margin:8px 0 4px;">1</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:12px;">tickets closed</div>
+          <div style="background:#F1F5F9;border-radius:8px;padding:6px 4px;"><div style="font-size:0.65rem;color:#94A3B8;">1 ticket this week</div></div>
+        </div>
+
+        <!-- Sherwin Antony: 1 closed -->
+        <div style="background:#F8FAFC;border:1.5px solid #BBF7D0;border-radius:14px;padding:16px 12px;text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:8px;"><div class="avatar" style="background:#059669;width:40px;height:40px;font-size:0.72rem;">SA</div></div>
+          <div style="font-weight:700;color:#1E293B;font-size:0.82rem;margin-bottom:4px;">Sherwin Antony</div>
+          <div style="background:#D1FAE5;color:#059669;font-size:2rem;font-weight:800;border-radius:10px;padding:6px 0;margin:8px 0 4px;">1</div>
+          <div style="font-size:0.6rem;color:#64748B;margin-bottom:12px;">tickets closed</div>
+          <div style="background:#F1F5F9;border-radius:8px;padding:6px 4px;"><div style="font-size:0.65rem;color:#94A3B8;">1 ticket this week</div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:20px;">
+      <div class="panel-title">4-Week Trend &nbsp;·&nbsp; W19 → W22 &nbsp;·&nbsp; Volume &amp; Resolution Speed</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;padding:16px 20px 4px;">
+        <div style="padding-right:16px;border-right:1px solid #E2E8F0;">
+          <div style="font-size:0.68rem;font-weight:700;color:#334155;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">📊 Ticket Volume</div>
+          <canvas id="wowVolumeChart" height="180"></canvas>
+        </div>
+        <div style="padding-left:16px;">
+          <div style="font-size:0.68rem;font-weight:700;color:#334155;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">⚡ Avg Turnaround — All Resolved (days)</div>
+          <canvas id="wowSpeedChart" height="180"></canvas>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid #E2E8F0;margin-top:8px;">
+        <div style="padding:12px 16px;border-right:1px solid #E2E8F0;display:flex;align-items:flex-start;gap:8px;">
+          <span style="font-size:1.2rem;">✅</span>
+          <div><div style="font-size:0.72rem;font-weight:700;color:#1E293B;">Best resolved week in 4 wks</div><div style="font-size:0.67rem;color:#64748B;margin-top:2px;">12 resolved in W22 — highest since W19's 20. Volume held steady at 13 new tickets.</div></div>
+        </div>
+        <div style="padding:12px 16px;border-right:1px solid #E2E8F0;display:flex;align-items:flex-start;gap:8px;">
+          <span style="font-size:1.2rem;">⚠️</span>
+          <div><div style="font-size:0.72rem;font-weight:700;color:#1E293B;">Open count nudging up</div><div style="font-size:0.67rem;color:#64748B;margin-top:2px;">Net +1 this week — open queue at 85. Isha leads with 5 closures, SK close behind with 4.</div></div>
+        </div>
+        <div style="padding:12px 16px;display:flex;align-items:flex-start;gap:8px;">
+          <span style="font-size:1.2rem;">📦</span>
+          <div><div style="font-size:0.72rem;font-weight:700;color:#D97706;">Backlog clearing mode</div><div style="font-size:0.67rem;color:#64748B;margin-top:2px;">All 12 resolved were backlog tickets — 0 same-week closures. Avg turnaround ~9.5d.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+    <script>
+    (function() {
+      const labels = [['W19','May 4–10'],['W20','May 11–17'],['W21','May 18–24'],['W22','May 25–31']];
+      const created  = [8, 23, 13, 13];
+      const resolved = [20, 6, 7, 12];
+      const medianDays = [13.2, 11.0, 6.4, 9.5];
+
+      new Chart(document.getElementById('wowVolumeChart').getContext('2d'), {
+        type: 'bar',
+        data: { labels, datasets: [
+          { label: 'Created', data: created, backgroundColor: 'rgba(29,78,216,0.8)', borderColor: '#1D4ED8', borderWidth: 1.5, borderRadius: 4, borderSkipped: false },
+          { label: 'Resolved', data: resolved, backgroundColor: 'rgba(5,150,105,0.8)', borderColor: '#059669', borderWidth: 1.5, borderRadius: 4, borderSkipped: false }
+        ]},
+        options: {
+          responsive: true,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { position: 'top', labels: { font: { size: 10 }, color: '#334155', padding: 10, boxWidth: 12 } },
+            tooltip: { callbacks: {
+              title: (items) => Array.isArray(items[0].label) ? items[0].label.join(' ') : items[0].label.replace('\n', ' '),
+              afterBody: (items) => { const c = items.find(i=>i.dataset.label==='Created')?.raw||0; const r = items.find(i=>i.dataset.label==='Resolved')?.raw||0; return r>c?[`  ✅ Net: +${r-c} more resolved`]:[`  ⚠️ Net: ${r-c} deficit`]; }
+            }}
+          },
+          scales: {
+            x: { ticks: { color: '#64748B', font: { size: 10 } }, grid: { display: false } },
+            y: { min: 0, max: 28, ticks: { color: '#64748B', font: { size: 10 }, stepSize: 7 }, grid: { color: 'rgba(0,0,0,0.05)' }, title: { display: true, text: 'Tickets', color: '#94A3B8', font: { size: 10 } } }
+          }
+        }
+      });
+
+      new Chart(document.getElementById('wowSpeedChart').getContext('2d'), {
+        type: 'line',
+        data: { labels, datasets: [{
+          label: 'Avg days to close (all resolved)',
+          data: medianDays,
+          borderColor: '#F59E0B',
+          backgroundColor: 'rgba(245,158,11,0.10)',
+          borderWidth: 2.5,
+          pointRadius: 6,
+          pointHoverRadius: 9,
+          pointBackgroundColor: medianDays.map((v,i) => i===medianDays.length-1?'#1D4ED8':'#F59E0B'),
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+          tension: 0.3,
+          fill: true,
+          spanGaps: true
+        }]},
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: {
+              title: (items) => Array.isArray(items[0].label) ? items[0].label.join(' ') : items[0].label.replace('\n', ' '),
+              label: (item) => ` Avg: ${item.raw.toFixed(1)} days`,
+              afterLabel: (item) => { if(item.dataIndex===0) return '  (baseline)'; const prev=medianDays.slice(0,item.dataIndex).filter(v=>v!=null).pop(); if(!prev) return ''; const pct=Math.round(((prev-item.raw)/prev)*100); return pct>0?`  ↓ ${pct}% faster than prior week`:`  ↑ ${Math.abs(pct)}% slower`; }
+            }}
+          },
+          scales: {
+            x: { ticks: { color: '#64748B', font: { size: 10 } }, grid: { display: false } },
+            y: { min: 0, max: 17, ticks: { color: '#64748B', font: { size: 10 }, callback: v => v.toFixed(0)+'d' }, grid: { color: 'rgba(0,0,0,0.05)' }, title: { display: true, text: 'Days', color: '#94A3B8', font: { size: 10 } } }
+          }
+        }
+      });
+    })();
+    </script>
+
+    <div class="panel">
+      <div class="panel-title">Individual Breakdown — Mon 25 May – Sun 31 May 2026</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:260px;">Team Member</th>
+            <th class="num">New Assigned</th>
+            <th class="num">Closed — New</th>
+            <th class="num">Closed — Old</th>
+            <th class="num">Total Closed</th>
+            <th class="num">Still Open</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="user-cell"><div class="avatar" style="background:#7C3AED">ID</div><span class="user-name">Isha Dewal</span></div></td>
+            <td class="num"><span class="num-val assigned-val">4</span></td>
+            <td class="num"><span class="num-val muted-val">—</span></td>
+            <td class="num"><span class="num-val" style="color:#7C3AED;">5</span></td>
+            <td class="num"><span class="num-val total-res-val">5</span></td>
+            <td class="num"><span class="num-val open-val">17</span></td>
+          </tr>
+          <tr>
+            <td><div class="user-cell"><div class="avatar" style="background:#1D4ED8">SK</div><span class="user-name">Swaraj Kumar</span></div></td>
+            <td class="num"><span class="num-val assigned-val">3</span></td>
+            <td class="num"><span class="num-val muted-val">—</span></td>
+            <td class="num"><span class="num-val" style="color:#7C3AED;">4</span></td>
+            <td class="num"><span class="num-val total-res-val">4</span></td>
+            <td class="num"><span class="num-val open-val">16</span></td>
+          </tr>
+          <tr>
+            <td><div class="user-cell"><div class="avatar" style="background:#D97706">FO</div><span class="user-name">Federico Oro</span></div></td>
+            <td class="num"><span class="num-val assigned-val">3</span></td>
+            <td class="num"><span class="num-val muted-val">—</span></td>
+            <td class="num"><span class="num-val" style="color:#7C3AED;">1</span></td>
+            <td class="num"><span class="num-val total-res-val">1</span></td>
+            <td class="num"><span class="num-val open-val">32</span></td>
+          </tr>
+          <tr>
+            <td><div class="user-cell"><div class="avatar" style="background:#059669">SA</div><span class="user-name">Sherwin Antony</span></div></td>
+            <td class="num"><span class="num-val assigned-val">2</span></td>
+            <td class="num"><span class="num-val muted-val">—</span></td>
+            <td class="num"><span class="num-val" style="color:#7C3AED;">1</span></td>
+            <td class="num"><span class="num-val total-res-val">1</span></td>
+            <td class="num"><span class="num-val open-val">10</span></td>
+          </tr>
+          <tr>
+            <td><div class="user-cell"><div class="avatar" style="background:#0891B2">KD</div><span class="user-name">Khambat Dagha</span></div></td>
+            <td class="num"><span class="num-val assigned-val">1</span></td>
+            <td class="num"><span class="num-val muted-val">—</span></td>
+            <td class="num"><span class="num-val" style="color:#7C3AED;">1</span></td>
+            <td class="num"><span class="num-val total-res-val">1</span></td>
+            <td class="num"><span class="num-val open-val">10</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="footer" style="display:flex;justify-content:space-between;align-items:center;">
+    <div class="note">Source: Workato Jira · PETFOSUP · Generated Jun 1, 2026 &nbsp;·&nbsp; CS Demo Infra Integrations excluded</div>
+    <div style="display:flex;gap:16px;align-items:center;flex-shrink:0;">
+      <div style="display:flex;align-items:center;gap:5px;font-size:0.7rem;color:#64748B;font-weight:600;"><div style="width:10px;height:10px;border-radius:3px;background:#059669;"></div> Resolved — New</div>
+      <div style="display:flex;align-items:center;gap:5px;font-size:0.7rem;color:#64748B;font-weight:600;"><div style="width:10px;height:10px;border-radius:3px;background:#7C3AED;"></div> Resolved — Backlog</div>
+      <div style="display:flex;align-items:center;gap:5px;font-size:0.7rem;color:#64748B;font-weight:600;"><div style="width:10px;height:10px;border-radius:3px;background:#0D9488;"></div> Total Resolved</div>
+      <div style="display:flex;align-items:center;gap:5px;font-size:0.7rem;color:#64748B;font-weight:600;"><div style="width:10px;height:10px;border-radius:3px;background:#DC2626;"></div> Open Now</div>
     </div>
   </div>
+  </div><!-- /tab-weekly -->
 
-  <div class="card full">
-    <h2>W22 Notable Resolved Tickets</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Key</th>
-          <th>Summary</th>
-          <th>Assignee</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><a href="https://workato.atlassian.net/browse/PETFOSUP-2547" target="_blank" style="color:#2563eb;text-decoration:none;font-weight:600;">PETFOSUP-2547</a></td>
-          <td>Grant Admin Consent for Besix_Sharepoint_Workatogo in Azure Portal</td>
-          <td>Swaraj Kumar</td>
-          <td><span class="pill green">Done</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://workato.atlassian.net/browse/PETFOSUP-2545" target="_blank" style="color:#2563eb;text-decoration:none;font-weight:600;">PETFOSUP-2545</a></td>
-          <td>Password reset request for Greenhouse admin account - P&E DEV Workspace</td>
-          <td>Isha Dewal</td>
-          <td><span class="pill green">Done</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://workato.atlassian.net/browse/PETFOSUP-2539" target="_blank" style="color:#2563eb;text-decoration:none;font-weight:600;">PETFOSUP-2539</a></td>
-          <td>Configure Entra ID Diagnostic Settings for License Genie testing</td>
-          <td>Swaraj Kumar</td>
-          <td><span class="pill green">Done</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://workato.atlassian.net/browse/PETFOSUP-2528" target="_blank" style="color:#2563eb;text-decoration:none;font-weight:600;">PETFOSUP-2528</a></td>
-          <td>Highspot demo sandbox credentials not working</td>
-          <td>Swaraj Kumar</td>
-          <td><span class="pill green">Done</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://workato.atlassian.net/browse/PETFOSUP-2522" target="_blank" style="color:#2563eb;text-decoration:none;font-weight:600;">PETFOSUP-2522</a></td>
-          <td>Sandbox access to Workday and Okta demo environments — urgent for demo template</td>
-          <td>Isha Dewal</td>
-          <td><span class="pill green">Done</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://workato.atlassian.net/browse/PETFOSUP-2521" target="_blank" style="color:#2563eb;text-decoration:none;font-weight:600;">PETFOSUP-2521</a></td>
-          <td>New permanent internal Agentic Pre-Sales Workato workspace for Agentic SC team</td>
-          <td>Khambat Dagha</td>
-          <td><span class="pill green">Done</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://workato.atlassian.net/browse/PETFOSUP-2512" target="_blank" style="color:#2563eb;text-decoration:none;font-weight:600;">PETFOSUP-2512</a></td>
-          <td>Enhanced permissions in Oracle Fusion UI for credentials bot (MCP demos)</td>
-          <td>Swaraj Kumar</td>
-          <td><span class="pill green">Done</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://workato.atlassian.net/browse/PETFOSUP-2501" target="_blank" style="color:#2563eb;text-decoration:none;font-weight:600;">PETFOSUP-2501</a></td>
-          <td>Critical: Publicly Exposed Confluence Endpoint (Port 8090) – Immediate Review</td>
-          <td>Federico Oro</td>
-          <td><span class="pill green">Done</span></td>
-        </tr>
-        <tr>
-          <td><a href="https://workato.atlassian.net/browse/PETFOSUP-2492" target="_blank" style="color:#2563eb;text-decoration:none;font-weight:600;">PETFOSUP-2492</a></td>
-          <td>Urgent: Atlassian Rovo admin license for MCP testing ($200K ARR renewal)</td>
-          <td>Sherwin Antony</td>
-          <td><span class="pill green">Done</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+  <!-- ══ TRENDS TAB ══ -->
+  <div id="tab-trends" class="tab-pane">
+    <div class="qoq-content">
 
-<div class="footer">Generated by Claude · W22 refresh · 2026-06-01 · <a href="https://workato.atlassian.net/jira/servicedesk/projects/PETFOSUP" target="_blank" style="color:#6b7280;">Open in Jira →</a></div>
+      <div class="qoq-hero">
+        <div class="qoq-hero-card" style="background:linear-gradient(135deg,#1E3A8A,#1D4ED8);color:#fff;">
+          <div class="qoq-hero-label">Total Tickets</div>
+          <div class="qoq-hero-q4">FY27 Q1 (Feb–Apr): 185</div>
+          <div class="qoq-hero-q1">57</div>
+          <div class="qoq-hero-delta" style="color:#93C5FD;">FY27 Q2 (May — full month)</div>
+        </div>
+        <div class="qoq-hero-card" style="background:linear-gradient(135deg,#065F46,#059669);color:#fff;">
+          <div class="qoq-hero-label">Avg Resolution Time</div>
+          <div class="qoq-hero-q4">FY27 Q1: 6.8d (same-qtr)</div>
+          <div class="qoq-hero-q1">9.5d</div>
+          <div class="qoq-hero-delta" style="color:#6EE7B7;">W22 avg turnaround</div>
+        </div>
+        <div class="qoq-hero-card" style="background:linear-gradient(135deg,#92400E,#D97706);color:#fff;">
+          <div class="qoq-hero-label">Resolution Rate</div>
+          <div class="qoq-hero-q4">FY27 Q1: 83% (153/185)</div>
+          <div class="qoq-hero-q1">79%</div>
+          <div class="qoq-hero-delta" style="color:#FDE68A;">Q2 May complete — throughput</div>
+        </div>
+        <div class="qoq-hero-card" style="background:linear-gradient(135deg,#4C1D95,#7C3AED);color:#fff;">
+          <div class="qoq-hero-label">New App Requests</div>
+          <div class="qoq-hero-q4">FY27 Q1: 19 (10.3%)</div>
+          <div class="qoq-hero-q1">8</div>
+          <div class="qoq-hero-delta" style="color:#C4B5FD;">Q2 May (14%) ↑ accelerating</div>
+        </div>
+      </div>
 
-<script>
-const ctx = document.getElementById('wowChart').getContext('2d');
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['W19 (May 4–10)', 'W20 (May 11–17)', 'W21 (May 18–24)', 'W22 (May 25–31)'],
-    datasets: [
-      {
-        label: 'Created',
-        data: [8, 17, 13, 13],
-        backgroundColor: 'rgba(45, 106, 159, 0.8)',
-        borderRadius: 4,
-        barPercentage: 0.6,
-      },
-      {
-        label: 'Resolved',
-        data: [35, 6, 7, 12],
-        backgroundColor: 'rgba(34, 197, 94, 0.8)',
-        borderRadius: 4,
-        barPercentage: 0.6,
+      <div class="qoq-panel">
+        <div class="qoq-panel-title">
+          Resolution Speed — Per Person (FY27 Q1 vs Q2)
+          <div class="qoq-legend">
+            <div class="qoq-legend-item"><div class="qoq-legend-dot" style="background:#1D4ED8;"></div>FY27 Q1 (Feb–Apr) — Q1-created tickets</div>
+            <div class="qoq-legend-item"><div class="qoq-legend-dot" style="background:#059669;"></div>FY27 Q2 (May, partial) — tickets resolved in Q2</div>
+          </div>
+        </div>
+        <div class="dual-bar-chart">
+          <div class="dual-bar-row">
+            <div class="dual-bar-person"><div class="user-cell"><div class="avatar" style="background:#7C3AED;width:22px;height:22px;font-size:0.55rem;">ID</div><span style="font-weight:600;font-size:0.75rem;color:#1E293B;">Isha Dewal</span></div></div>
+            <div class="dual-bars"><div class="dual-bar-track"><div class="dual-bar-fill" style="width:45%;background:#1D4ED8;">13.5d (Q1)</div></div><div class="dual-bar-track"><div class="dual-bar-fill" style="width:91%;background:#059669;">27.3d (Q2, backlog)</div></div></div>
+            <div class="dual-bar-meta" style="color:#DC2626;">↑ +102%</div>
+          </div>
+          <div class="dual-bar-row">
+            <div class="dual-bar-person"><div class="user-cell"><div class="avatar" style="background:#1D4ED8;width:22px;height:22px;font-size:0.55rem;">SK</div><span style="font-weight:600;font-size:0.75rem;color:#1E293B;">Swaraj Kumar</span></div></div>
+            <div class="dual-bars"><div class="dual-bar-track"><div class="dual-bar-fill" style="width:40%;background:#1D4ED8;">12.0d (Q1)</div></div><div class="dual-bar-track"><div class="dual-bar-fill" style="width:25%;background:#059669;">7.5d (Q2)</div></div></div>
+            <div class="dual-bar-meta" style="color:#059669;">↓ 38% ⭐</div>
+          </div>
+          <div class="dual-bar-row">
+            <div class="dual-bar-person"><div class="user-cell"><div class="avatar" style="background:#D97706;width:22px;height:22px;font-size:0.55rem;">FO</div><span style="font-weight:600;font-size:0.75rem;color:#1E293B;">Federico Oro</span></div></div>
+            <div class="dual-bars"><div class="dual-bar-track"><div class="dual-bar-fill" style="width:29%;background:#1D4ED8;">8.6d (Q1)</div></div><div class="dual-bar-track"><div class="dual-bar-fill" style="width:17%;background:#059669;">5.1d (Q2)</div></div></div>
+            <div class="dual-bar-meta" style="color:#059669;">↓ 41% ⭐</div>
+          </div>
+          <div class="dual-bar-row">
+            <div class="dual-bar-person"><div class="user-cell"><div class="avatar" style="background:#DC2626;width:22px;height:22px;font-size:0.55rem;">SA</div><span style="font-weight:600;font-size:0.75rem;color:#1E293B;">Sherwin Antony</span></div></div>
+            <div class="dual-bars"><div class="dual-bar-track"><div class="dual-bar-fill" style="width:31%;background:#1D4ED8;">9.4d (Q1)</div></div><div class="dual-bar-track"><div class="dual-bar-fill" style="width:92%;background:#059669;">27.5d (Q2, backlog)</div></div></div>
+            <div class="dual-bar-meta" style="color:#DC2626;">↑ +193%</div>
+          </div>
+          <div class="dual-bar-row">
+            <div class="dual-bar-person"><div class="user-cell"><div class="avatar" style="background:#0891B2;width:22px;height:22px;font-size:0.55rem;">KD</div><span style="font-weight:600;font-size:0.75rem;color:#1E293B;">Khambat Dagha</span></div></div>
+            <div class="dual-bars"><div class="dual-bar-track"><div class="dual-bar-fill" style="width:27%;background:#1D4ED8;">8.0d (Q1)</div></div><div class="dual-bar-track" style="background:#E2E8F0;"><div style="padding:2px 6px;font-size:0.6rem;color:#94A3B8;">No Q2 resolutions yet</div></div></div>
+            <div class="dual-bar-meta" style="color:#94A3B8;">—</div>
+          </div>
+          <div style="margin-top:10px;padding:8px 0 0;border-top:1px dashed #E2E8F0;">
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:5px;">
+              <span style="font-size:0.68rem;font-weight:700;color:#475569;">Q1 Avg (same-qtr):</span>
+              <span style="font-size:0.8rem;font-weight:700;color:#1D4ED8;">6.8d</span>
+              <span style="background:#DBEAFE;color:#1D4ED8;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:20px;">83% resolution rate</span>
+            </div>
+            <div style="font-size:0.62rem;color:#94A3B8;font-style:italic;">⚠ Q2 bars show avg days for tickets resolved in May — mostly Q1 backlog being cleared. Fresh Q2 tickets average 1.4d.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qoq-panel">
+        <div class="qoq-panel-title">Monthly Momentum — FY27 Q1 (Feb–Apr 2026) + Q2 Partial</div>
+        <div style="padding:16px 20px;">
+          <div class="month-cards">
+            <div class="month-card" style="border-left:4px solid #1D4ED8;">
+              <div class="month-card-title" style="color:#1D4ED8;">📅 Feb 2026 <span style="font-size:0.59rem;background:#DBEAFE;color:#1D4ED8;padding:1px 5px;border-radius:8px;margin-left:3px;">Q1 M1</span></div>
+              <div class="month-stat"><span>Tickets Received</span><span class="month-stat-val">29</span></div>
+              <div class="month-stat"><span>Resolved (all sources)</span><span class="month-stat-val" style="color:#059669;">65</span></div>
+              <div class="month-stat"><span>Net Queue Change</span><span class="month-stat-val" style="color:#059669;">−36 ↓</span></div>
+              <div class="month-stat"><span>Throughput Rate</span><span class="month-stat-val">224%</span></div>
+              <div class="month-stat"><span>Note</span><span class="month-stat-val" style="color:#64748B;font-size:0.62rem;">Backlog clearing</span></div>
+            </div>
+            <div class="month-card" style="border-left:4px solid #7C3AED;">
+              <div class="month-card-title" style="color:#7C3AED;">📅 Mar 2026 <span style="font-size:0.59rem;background:#F3E8FF;color:#7C3AED;padding:1px 5px;border-radius:8px;margin-left:3px;">Q1 M2</span></div>
+              <div class="month-stat"><span>Tickets Received</span><span class="month-stat-val">71</span></div>
+              <div class="month-stat"><span>Resolved (all sources)</span><span class="month-stat-val" style="color:#059669;">65</span></div>
+              <div class="month-stat"><span>Net Queue Change</span><span class="month-stat-val" style="color:#D97706;">+6 ↑</span></div>
+              <div class="month-stat"><span>Throughput Rate</span><span class="month-stat-val">92%</span></div>
+              <div class="month-stat"><span>Avg Res (same-qtr)</span><span class="month-stat-val" style="color:#D97706;">6.8d</span></div>
+            </div>
+            <div class="month-card" style="border-left:4px solid #D97706;">
+              <div class="month-card-title" style="color:#D97706;">📅 Apr 2026 <span style="font-size:0.59rem;background:#FEF3C7;color:#92400E;padding:1px 5px;border-radius:8px;margin-left:3px;">Q1 M3</span></div>
+              <div class="month-stat"><span>Tickets Received</span><span class="month-stat-val">85</span></div>
+              <div class="month-stat"><span>Resolved (all sources)</span><span class="month-stat-val" style="color:#059669;">75</span></div>
+              <div class="month-stat"><span>Net Queue Change</span><span class="month-stat-val" style="color:#DC2626;">+10 ↑</span></div>
+              <div class="month-stat"><span>Throughput Rate</span><span class="month-stat-val">88%</span></div>
+              <div class="month-stat"><span>Avg Res (same-qtr)</span><span class="month-stat-val" style="color:#059669;">6.8d</span></div>
+            </div>
+            <div class="month-card" style="border-left:4px solid #059669;">
+              <div class="month-card-title" style="color:#059669;">📅 May 2026 <span style="font-size:0.59rem;background:#DCFCE7;color:#15803D;padding:1px 5px;border-radius:8px;margin-left:3px;">Q2 M1 ✓</span></div>
+              <div class="month-stat"><span>Tickets Received</span><span class="month-stat-val">57</span></div>
+              <div class="month-stat"><span>Resolved in May</span><span class="month-stat-val" style="color:#059669;">45</span></div>
+              <div class="month-stat"><span>Net Queue Change</span><span class="month-stat-val" style="color:#DC2626;">+12 ↑</span></div>
+              <div class="month-stat"><span>Throughput Rate</span><span class="month-stat-val">79%</span></div>
+              <div class="month-stat"><span>Avg turnaround</span><span class="month-stat-val" style="color:#D97706;">9.5d</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;">
+        <div class="qoq-panel">
+          <div class="qoq-panel-title">Weekly Ticket Volume (W04 – W22)</div>
+          <div class="bar-chart" style="padding:12px 16px 8px;">
+            <div class="bar-row"><div class="bar-label">W04 Jan 19</div><div class="bar-track"><div class="bar-fill" style="width:56%;background:#1D4ED8;">14</div></div><div class="bar-count">14</div></div>
+            <div class="bar-row"><div class="bar-label">W05 Jan 26</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:#1D4ED8;">18</div></div><div class="bar-count">18</div></div>
+            <div class="bar-row"><div class="bar-label">W06 Feb 02</div><div class="bar-track"><div class="bar-fill" style="width:28%;background:#60A5FA;">7</div></div><div class="bar-count">7</div></div>
+            <div class="bar-row"><div class="bar-label">W07 Feb 09</div><div class="bar-track"><div class="bar-fill" style="width:96%;background:#1D4ED8;">24</div></div><div class="bar-count">24</div></div>
+            <div class="bar-row"><div class="bar-label">W08 Feb 16</div><div class="bar-track"><div class="bar-fill" style="width:56%;background:#1D4ED8;">14</div></div><div class="bar-count">14</div></div>
+            <div class="bar-row"><div class="bar-label">W09 Feb 23</div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#7C3AED;">23</div></div><div class="bar-count">23</div></div>
+            <div class="bar-row"><div class="bar-label">W10 Mar 02</div><div class="bar-track"><div class="bar-fill" style="width:36%;background:#60A5FA;">9</div></div><div class="bar-count">9</div></div>
+            <div class="bar-row"><div class="bar-label">W11 Mar 09</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#DC2626;">25</div></div><div class="bar-count">25</div></div>
+            <div class="bar-row"><div class="bar-label">W12 Mar 16</div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#7C3AED;">23</div></div><div class="bar-count">23</div></div>
+            <div class="bar-row"><div class="bar-label">W13 Mar 23</div><div class="bar-track"><div class="bar-fill" style="width:76%;background:#7C3AED;">19</div></div><div class="bar-count">19</div></div>
+            <div class="bar-row"><div class="bar-label">W14 Mar 30</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#0891B2;">15</div></div><div class="bar-count">15</div></div>
+            <div class="bar-row"><div class="bar-label">W15 Apr 06</div><div class="bar-track"><div class="bar-fill" style="width:84%;background:#0891B2;">21</div></div><div class="bar-count">21</div></div>
+            <div class="bar-row"><div class="bar-label">W16 Apr 13</div><div class="bar-track"><div class="bar-fill" style="width:96%;background:#1D4ED8;">24</div></div><div class="bar-count">24</div></div>
+            <div class="bar-row"><div class="bar-label">W17 Apr 20</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:#0891B2;">18</div></div><div class="bar-count">18</div></div>
+            <div class="bar-row"><div class="bar-label">W18 Apr 27</div><div class="bar-track"><div class="bar-fill" style="width:52%;background:#059669;">13</div></div><div class="bar-count" style="color:#059669;">13</div></div>
+            <div class="bar-row"><div class="bar-label">W19 May 04</div><div class="bar-track"><div class="bar-fill" style="width:32%;background:#10B981;">8</div></div><div class="bar-count" style="color:#10B981;">8</div></div>
+            <div class="bar-row"><div class="bar-label">W20 May 11</div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#DC2626;">23</div></div><div class="bar-count" style="color:#DC2626;">23</div></div>
+            <div class="bar-row"><div class="bar-label">W21 May 18</div><div class="bar-track"><div class="bar-fill" style="width:52%;background:#059669;">13</div></div><div class="bar-count" style="color:#059669;">13</div></div>
+            <div class="bar-row"><div class="bar-label">W22 May 25</div><div class="bar-track"><div class="bar-fill" style="width:52%;background:#1D4ED8;">13</div></div><div class="bar-count" style="color:#1D4ED8;">13</div></div>
+          </div>
+        </div>
+
+        <div class="qoq-panel">
+          <div class="qoq-panel-title">Request Type Breakdown — 90 Days (excl. New Cloud Resource)</div>
+          <div style="padding:12px 16px;">
+            <div class="rt-bar-row"><div class="rt-bar-label">Sandbox Related</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:96%;background:#1D4ED8;">24</div></div><div class="rt-bar-pct">25%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">Workspace Access</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:100%;background:#0891B2;">25</div></div><div class="rt-bar-pct">26%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">New App Request</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:76%;background:#7C3AED;">19</div></div><div class="rt-bar-pct">20%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">Credentials</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:40%;background:#059669;">10</div></div><div class="rt-bar-pct">11%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">Azure Related</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:20%;background:#D97706;">5</div></div><div class="rt-bar-pct">5%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">GCP Related</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:12%;background:#64748B;">3</div></div><div class="rt-bar-pct">3%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">Verification Code</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:12%;background:#DC2626;">3</div></div><div class="rt-bar-pct">3%</div></div>
+            <div class="rt-bar-row"><div class="rt-bar-label">Others</div><div class="rt-bar-track"><div class="rt-bar-fill" style="width:20%;background:#94A3B8;">5</div></div><div class="rt-bar-pct">5%</div></div>
+            <div style="margin-top:10px;background:#F5F3FF;border:1px solid #DDD6FE;border-radius:6px;padding:6px 8px;font-size:0.63rem;color:#5B21B6;font-weight:600;">💡 New App Requests trending up: Q1 FY27 = 10%, Q2 FY27 (May) = 14% — strong demand signal</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qoq-panel">
+        <div class="qoq-panel-title">Team Performance — FY27 Q1 (Feb 1 – Apr 30, 2026)</div>
+        <table class="q-team-table">
+          <thead>
+            <tr>
+              <th style="width:200px;">Team Member</th>
+              <th>Tickets Assigned</th><th>Resolved</th><th>Open</th>
+              <th>Resolution Rate</th><th>Avg Resolution Time</th><th>Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="user-cell"><div class="avatar" style="background:#7C3AED;width:26px;height:26px;font-size:0.6rem;">ID</div><span style="font-weight:600;color:#1E293B;">Isha Dewal</span></div></td>
+              <td style="font-weight:700;color:#1E293B;">68</td><td style="font-weight:700;color:#059669;">57</td><td style="font-weight:700;color:#DC2626;">11</td>
+              <td><span style="font-weight:700;">84%</span><div class="rate-bar"><div class="rate-bar-fill" style="width:84%;background:#059669;"></div></div></td>
+              <td><span class="ri-pill mid">13.5d</span></td><td style="font-size:0.7rem;color:#059669;font-weight:700;">↑ Strong Q1</td>
+            </tr>
+            <tr>
+              <td><div class="user-cell"><div class="avatar" style="background:#1D4ED8;width:26px;height:26px;font-size:0.6rem;">SK</div><span style="font-weight:600;color:#1E293B;">Swaraj Kumar</span></div></td>
+              <td style="font-weight:700;color:#1E293B;">67</td><td style="font-weight:700;color:#059669;">56</td><td style="font-weight:700;color:#DC2626;">11</td>
+              <td><span style="font-weight:700;">84%</span><div class="rate-bar"><div class="rate-bar-fill" style="width:84%;background:#059669;"></div></div></td>
+              <td><span class="ri-pill mid">12.0d</span></td><td style="font-size:0.7rem;color:#059669;font-weight:700;">↑ Strong Q1</td>
+            </tr>
+            <tr>
+              <td><div class="user-cell"><div class="avatar" style="background:#D97706;width:26px;height:26px;font-size:0.6rem;">FO</div><span style="font-weight:600;color:#1E293B;">Federico Oro</span></div></td>
+              <td style="font-weight:700;color:#1E293B;">33</td><td style="font-weight:700;color:#059669;">24</td><td style="font-weight:700;color:#DC2626;">9</td>
+              <td><span style="font-weight:700;">73%</span><div class="rate-bar"><div class="rate-bar-fill" style="width:73%;background:#D97706;"></div></div></td>
+              <td><span class="ri-pill mid">8.6d</span></td><td style="font-size:0.7rem;color:#059669;font-weight:700;">✓ Fastest avg Q1</td>
+            </tr>
+            <tr>
+              <td><div class="user-cell"><div class="avatar" style="background:#DC2626;width:26px;height:26px;font-size:0.6rem;">SA</div><span style="font-weight:600;color:#1E293B;">Sherwin Antony</span></div></td>
+              <td style="font-weight:700;color:#1E293B;">7</td><td style="font-weight:700;color:#059669;">6</td><td style="font-weight:700;color:#D97706;">1</td>
+              <td><span style="font-weight:700;">86%</span><div class="rate-bar"><div class="rate-bar-fill" style="width:86%;background:#059669;"></div></div></td>
+              <td><span class="ri-pill mid">9.4d</span></td><td style="font-size:0.7rem;color:#059669;font-weight:700;">↑ Good velocity</td>
+            </tr>
+            <tr>
+              <td><div class="user-cell"><div class="avatar" style="background:#0891B2;width:26px;height:26px;font-size:0.6rem;">KD</div><span style="font-weight:600;color:#1E293B;">Khambat Dagha</span></div></td>
+              <td style="font-weight:700;color:#1E293B;">7</td><td style="font-weight:700;color:#059669;">7</td><td style="font-weight:700;color:#94A3B8;">0</td>
+              <td><span style="font-weight:700;color:#059669;">100%</span><div class="rate-bar"><div class="rate-bar-fill" style="width:100%;background:#059669;"></div></div></td>
+              <td><span class="ri-pill fast">8.0d</span></td><td style="font-size:0.7rem;color:#059669;font-weight:700;">✓ 100% cleared</td>
+            </tr>
+            <tr>
+              <td><div class="user-cell"><div class="avatar" style="background:#BE185D;width:26px;height:26px;font-size:0.6rem;">MJ</div><span style="font-weight:600;color:#1E293B;">Matias Juan</span></div></td>
+              <td style="font-weight:700;color:#1E293B;">3</td><td style="font-weight:700;color:#059669;">3</td><td style="font-weight:700;color:#94A3B8;">0</td>
+              <td><span style="font-weight:700;color:#059669;">100%</span><div class="rate-bar"><div class="rate-bar-fill" style="width:100%;background:#059669;"></div></div></td>
+              <td><span class="ri-pill mid">46.1d</span></td><td style="font-size:0.7rem;color:#D97706;font-weight:700;">↔ Low volume</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- New Application Requests Q1 vs Q2 -->
+      <div style="background:#fff;border-radius:14px;margin-bottom:18px;overflow:hidden;border:1px solid #E2E8F0;">
+        <div style="padding:14px 20px 12px;border-bottom:1px solid #E2E8F0;background:#F8FAFC;border-left:3px solid #3B82F6;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:0.72rem;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.08em;">New Application Requests — FY27 Q1 vs FY27 Q2</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:16px 20px 8px;gap:12px;">
+          <div id="nar-q4-card" onclick="toggleNAR('q4')" style="cursor:pointer;background:#EFF6FF;border:2px solid #3B82F6;border-radius:12px;padding:18px 16px;text-align:center;">
+            <div style="font-size:0.6rem;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">FY27 Q1 · Feb – Apr 2026</div>
+            <div style="font-size:2.6rem;font-weight:900;color:#1D4ED8;line-height:1;">17</div>
+            <div style="font-size:0.62rem;color:#3B82F6;margin-top:3px;">requests</div>
+            <div style="margin-top:8px;font-size:0.62rem;color:#64748B;">4 done &nbsp;·&nbsp; 3 rejected &nbsp;·&nbsp; 10 triaging</div>
+            <div style="margin-top:10px;font-size:0.63rem;font-weight:700;color:#1D4ED8;" id="nar-q4-toggle">▼ Show apps</div>
+          </div>
+          <div style="text-align:center;padding:0 10px;">
+            <div style="font-size:1.4rem;color:#3B82F6;">→</div>
+            <div style="background:linear-gradient(135deg,#1D4ED8,#3B82F6);color:#fff;font-size:0.72rem;font-weight:800;padding:4px 12px;border-radius:20px;white-space:nowrap;margin-top:5px;">Pace ↑ 67%</div>
+            <div style="font-size:0.58rem;color:#94A3B8;margin-top:4px;">Q1 → Q2 rate</div>
+          </div>
+          <div id="nar-q1-card" onclick="toggleNAR('q1')" style="cursor:pointer;background:#F0FDF4;border:2px solid #059669;border-radius:12px;padding:18px 16px;text-align:center;">
+            <div style="font-size:0.6rem;font-weight:700;color:#065F46;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">FY27 Q2 · May 2026 (full)</div>
+            <div style="font-size:2.6rem;font-weight:900;color:#059669;line-height:1;">8</div>
+            <div style="font-size:0.62rem;color:#059669;margin-top:3px;">requests so far</div>
+            <div style="margin-top:8px;font-size:0.62rem;color:#64748B;">0 done &nbsp;·&nbsp; 0 rejected &nbsp;·&nbsp; 8 triaging</div>
+            <div style="margin-top:10px;font-size:0.63rem;font-weight:700;color:#065F46;" id="nar-q1-toggle">▼ Show apps</div>
+          </div>
+        </div>
+
+        <div id="nar-q4-list" style="display:none;padding:4px 20px 16px;">
+          <div style="font-size:0.6rem;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;padding-top:10px;border-top:1px solid #E2E8F0;">FY27 Q1 · 17 Applications (Mar–Apr 2026)</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2045" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;"><span style="font-size:0.75rem;font-weight:600;color:#1E293B;">PagerDuty</span><span style="background:#10B981;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Done</span></a>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2046" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;"><span style="font-size:0.75rem;font-weight:600;color:#1E293B;">PageUp</span><span style="background:#EF4444;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Rejected</span></a>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2186" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;"><span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Docebo</span><span style="background:#10B981;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Done</span></a>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2199" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:7px 12px;"><span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Coda</span><span style="background:#10B981;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Done</span></a>
+          </div>
+        </div>
+
+        <div id="nar-q1-list" style="display:none;padding:4px 20px 16px;">
+          <div style="font-size:0.6rem;font-weight:700;color:#065F46;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;padding-top:10px;border-top:1px solid #E2E8F0;">FY27 Q2 · 8 Applications (May 2026 · All In Progress)</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2492" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F0FDF4;border:1px solid #A7F3D0;border-radius:8px;padding:7px 12px;"><span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Atlassian Rovo</span><span style="background:#F59E0B;color:#111;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span><span style="font-size:0.55rem;color:#DC2626;font-weight:700;">$200K ARR</span></a>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2505" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F0FDF4;border:1px solid #A7F3D0;border-radius:8px;padding:7px 12px;"><span style="font-size:0.75rem;font-weight:600;color:#1E293B;">AWS Quick Suite</span><span style="background:#94A3B8;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">New</span></a>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2510" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F0FDF4;border:1px solid #A7F3D0;border-radius:8px;padding:7px 12px;"><span style="font-size:0.75rem;font-weight:600;color:#1E293B;">SALT Security</span><span style="background:#F59E0B;color:#111;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">Triaging</span></a>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2513" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F0FDF4;border:1px solid #A7F3D0;border-radius:8px;padding:7px 12px;"><span style="font-size:0.75rem;font-weight:600;color:#1E293B;">WordPress (upgrade)</span><span style="background:#94A3B8;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">New</span></a>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2520" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F0FDF4;border:1px solid #A7F3D0;border-radius:8px;padding:7px 12px;"><span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Salesforce (new instance)</span><span style="background:#94A3B8;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">New</span></a>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2525" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F0FDF4;border:1px solid #A7F3D0;border-radius:8px;padding:7px 12px;"><span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Akeneo sandbox</span><span style="background:#94A3B8;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">New</span></a>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2560" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F0FDF4;border:1px solid #A7F3D0;border-radius:8px;padding:7px 12px;"><span style="font-size:0.75rem;font-weight:600;color:#1E293B;">GitLab (PAT / connector)</span><span style="background:#94A3B8;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">New</span></a>
+            <a href="https://workato.atlassian.net/browse/PETFOSUP-2563" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:#F0FDF4;border:1px solid #A7F3D0;border-radius:8px;padding:7px 12px;"><span style="font-size:0.75rem;font-weight:600;color:#1E293B;">Oracle Primavera (OPC/OPU)</span><span style="background:#94A3B8;color:#fff;font-size:0.58rem;font-weight:700;padding:2px 8px;border-radius:8px;">New</span></a>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:14px;padding:6px 20px 14px;flex-wrap:wrap;border-top:1px solid #E2E8F0;margin-top:4px;">
+          <span style="font-size:0.6rem;color:#64748B;display:flex;align-items:center;gap:5px;"><span style="background:#10B981;color:#fff;font-size:0.57rem;font-weight:700;padding:1px 7px;border-radius:6px;">Done</span> Fully provisioned</span>
+          <span style="font-size:0.6rem;color:#64748B;display:flex;align-items:center;gap:5px;"><span style="background:#F59E0B;color:#fff;font-size:0.57rem;font-weight:700;padding:1px 7px;border-radius:6px;">Triaging</span> In progress / under review</span>
+          <span style="font-size:0.6rem;color:#64748B;display:flex;align-items:center;gap:5px;"><span style="background:#EF4444;color:#fff;font-size:0.57rem;font-weight:700;padding:1px 7px;border-radius:6px;">Rejected</span> Not approved</span>
+        </div>
+      </div>
+
+      <script>
+      function toggleNAR(quarter) {
+        const list = document.getElementById('nar-' + quarter + '-list');
+        const toggle = document.getElementById('nar-' + quarter + '-toggle');
+        const card = document.getElementById('nar-' + quarter + '-card');
+        const isOpen = list.style.display !== 'none';
+        list.style.display = isOpen ? 'none' : 'block';
+        toggle.textContent = isOpen ? '▼ Show apps' : '▲ Hide apps';
+        card.style.boxShadow = isOpen ? '' : '0 0 0 2px #3B82F6';
       }
-    ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'top', labels: { font: { size: 11 }, boxWidth: 12 } },
-      tooltip: { callbacks: { footer: (items) => items[0].label.includes('W19') || items[0].label.includes('W20') ? '* estimated' : '' } }
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-      y: { grid: { color: '#f3f4f6' }, ticks: { font: { size: 11 }, stepSize: 5 }, beginAtZero: true }
-    }
+      </script>
+
+    </div>
+
+    <div class="q-footer" style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="note">Source: Workato Jira · PETFOSUP · FY27 Q1: Feb 1–Apr 30, 2026 · FY27 Q2: May 1–Jul 31, 2026 (May complete) · CS Demo Infra Integrations excluded</div>
+      <div style="font-size:0.7rem;color:#94A3B8;">Generated Jun 1, 2026</div>
+    </div>
+  </div><!-- /tab-trends -->
+
+</div>
+<script>
+  function switchTab(name) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      if (b.getAttribute('onclick').includes(name)) b.classList.add('active');
+    });
   }
-});
+
+  (function() {
+    const tip = document.createElement('div');
+    tip.id = 'global-tooltip';
+    tip.style.cssText = 'display:none;position:fixed;z-index:9999;background:#1E293B;color:#F8FAFC;font-size:0.7rem;padding:7px 11px;border-radius:7px;border:1px solid rgba(0,0,0,0.1);box-shadow:0 6px 20px rgba(0,0,0,0.25);pointer-events:none;max-width:280px;line-height:1.4;white-space:normal;';
+    document.body.appendChild(tip);
+
+    document.querySelectorAll('.info-icon').forEach(icon => {
+      const inner = icon.querySelector('.tooltip');
+      const text = inner ? inner.textContent.trim() : '';
+      if (!text) return;
+      icon.addEventListener('mouseenter', () => {
+        tip.textContent = text;
+        tip.style.display = 'block';
+        const r = icon.getBoundingClientRect();
+        const tipW = tip.offsetWidth, tipH = tip.offsetHeight, m = 8;
+        let top = r.top - tipH - 10, left = r.left + r.width/2 - tipW/2;
+        if (top < m) top = r.bottom + 10;
+        if (left < m) left = m;
+        if (left + tipW > window.innerWidth - m) left = window.innerWidth - tipW - m;
+        tip.style.top = top + 'px';
+        tip.style.left = left + 'px';
+      });
+      icon.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+    });
+  })();
 </script>
 </body>
 </html>
